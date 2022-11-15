@@ -28,6 +28,12 @@
       }
       &:last-child {
         text-align:right;
+        display: flex;
+        justify-content: flex-end;
+        a {
+          margin:0 8px;
+          font-size:20px;
+        }
       }
     }
   }
