@@ -27,7 +27,7 @@ export default function EntryHeader({ title, image, date, author, className }) {
 
       {image && (
         <div className={styles['image']}>
-          <div className="container">
+          <div className="container full">
             <FeaturedImage
               className={styles['featured-image']}
               image={image}
