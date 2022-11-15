@@ -1,8 +1,7 @@
 @import 'styles/Variables';
 
 .header {
-  color: var(--color-white);
-  background-color: var(--color-primary);
+  background-color: $color-white;
 }
 
 .bar {

@@ -26,6 +26,23 @@ export default function Header({ className }) {
   return (
     <header className={headerClasses}>
       <SkipNavigationLink />
+      <div class="greenbg">
+        <div class="container cf">
+          <div class="phone-numbers">
+            <div class="inner-phone">
+              <div class="number-area-1"><p><strong>PH FOR RHINOPLASTY:</strong>&nbsp;<a href="tel:1300264811">1300 264 811</a>&nbsp;or <strong>EAR NOSE AND THROAT:</strong>&nbsp;<a href="tel:0390381630">03 9038 1630</a></p></div>
+            </div>
+          </div>
+          <div class="top-bar-menu-container">
+            <NavigationMenu
+              id={styles['primary-navigation']}
+              className={navClasses}
+              menuLocation={MENUS.TOP_LOCATION}
+            >
+          </div>
+        </div>
+      </div>
+
       <div className="container">
         <div className={styles['bar']}>
           <div className={styles['logo']}>
