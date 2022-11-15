@@ -4,7 +4,7 @@
   position: relative;
   background-color: $color-green;
   color:$color-white;
-  padding: 3rem;
+  padding: 3rem 3rem 0 3rem;
   margin-top: 4rem;
 
   a {
@@ -19,6 +19,17 @@
 
   .copyright {
     border-top:1px solid $color-white;
+    display: flex;
+    padding: 20px 0;
+    & > div {
+      width:50%;
+    }
+    .left-part {
+      text-align:left;
+    }
+    .right-part {
+      text-align:right;
+    }
   }
 }
 
