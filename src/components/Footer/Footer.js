@@ -135,7 +135,7 @@ export default function Footer() {
           <div className="right-part">
             <a className="logo-footer" href="https://cocorubyplasticsurgery.com.au/" target="_blank" rel="noopener noreferrer">
               <Image
-                src="/logo-footer.jpg"
+                src="/logofooter.jpg"
                 width={400}
                 height={80}
                 alt="Cocoruby Plastic Surgery logo"
