@@ -129,8 +129,46 @@ export default function Footer() {
         />
 
         <div className={styles.copyright}>
-          &copy; {new Date().getFullYear()} Blueprint Media &#183; Powered By{' '}
-          <a href="https://wpengine.com/atlas">Atlas</a>
+          <div className="left-part">
+            &copy; {new Date().getFullYear()} - Dr Stephen Kleid FRACS. All Rights Reserved.
+          </div>
+          <div className="right-part">
+            <a className="logo-footer" href="https://cocorubyplasticsurgery.com.au/" target="_blank">
+              <Image
+                src="/logo-footer.jpg"
+                width={400}
+                height={80}
+                alt="Cocoruby Plastic Surgery logo"
+                layout="responsive"
+              />
+            </a>
+            <div class="social-links"> 
+              <a href="https://www.facebook.com/drstephenkleid" target="_blank">
+                <FaFacebookF
+                  title="Facebook"
+                  className={styles['social-icon']}
+                />
+              </a>
+              <a href="https://www.instagram.com/drstephenkleid/" target="_blank">
+                <FaInstagram
+                  title="Instagram"
+                  className={styles['social-icon']}
+                />
+              </a>
+              <a href="https://www.youtube.com/playlist?list=PL6Jjhwa1iz3XqL6kmz86i4ezFtaHIJTNq" target="_blank">
+                <FaYoutube
+                  title="YouTube"
+                  className={styles['social-icon']}
+                />
+              </a>
+              <a href="https://www.linkedin.com/in/stephen-kleid-06617038/" target="_blank">
+                <FaLinkedinIn
+                  title="LinkedIn"
+                  className={styles['social-icon']}
+                />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
