@@ -1,13 +1,35 @@
-$font-family: Inter, Verdana, Arial, Helvetica, sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+$font-family: 'Source Sans Pro', sans-serif;
+$font-primary: 'Source Sans Pro', sans-serif;
+$font-secondary: 'Source Sans Pro', sans-serif;
 $font-weight-normal: 400;
 $font-weight-bold: 600;
 $font-weight-extra-bold: 700;
 
+/* Breakpoint */
 $breakpoint-extra-small: 640px;
 $breakpoint-small: 768px;
 $breakpoint-medium: 1024px;
 
-$container-max-width: 1200px;
+$break-small: 40em;
+$break-medium: 60em;
+$break-large: 80em;
+
+$container-max-width: 1520px;
 $content-max-width: 620px;
 
 $box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
+
+/* Site Colors */
+$color-blue: #1882f4;
+$color-orange: #d65015;
+$color-yellow: #efce4a;
+$color-red: #d31f16;
+$color-silver: #E9E9E9;
+$color-grey: #525252;
+$color-black: #222222;
+$color-white: #FFFFFF;
+$color-secondary: #F3C6C6;
+$color-green: #7dcab2;
+$color-pink: #7dcab2;
