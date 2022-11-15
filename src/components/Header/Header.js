@@ -51,6 +51,7 @@ export default function Header({ className }) {
               className={navClasses}
               menuLocation={MENUS.TOP_LOCATION}
             >
+            </NavigationMenu>
           </div>
 
         </div>
