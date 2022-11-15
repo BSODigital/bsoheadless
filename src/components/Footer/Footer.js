@@ -150,7 +150,7 @@ export default function Footer() {
                 />
               </a>
               <a href="https://www.instagram.com/drstephenkleid/" target="_blank" rel="noopener noreferrer">
-                <FaInstagram
+                <FaInstagram 
                   title="Instagram"
                   className={styles['social-icon']}
                 />
