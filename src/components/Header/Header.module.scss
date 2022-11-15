@@ -2,21 +2,18 @@
 
 .header {
   background-color: $color-white;
-
-  .greenbg {
-    .container {
-      display: flex;
-    }
-    .phone-numbers {
-      padding:17px 0;
-      letter-spacing: .5px;
-      width:50%;
-    }
-    .top-bar-menu-container {
-      width:50%;
-      text-align: right;
-    }
-  }
+}
+.container-header{
+  display: flex;
+}
+.header-phone-numbers {
+  padding:17px 0;
+  letter-spacing: .5px;
+  width:50%;
+}
+.header-top-bar-menu-container {
+  width:50%;
+  text-align: right;
 }
 
 .bar {

@@ -27,9 +27,9 @@ export default function Header({ className }) {
     <header className={headerClasses}>
       <SkipNavigationLink />
       <div className="greenbg">
-        <div className="container cf">
+        <div className="container container-header cf">
 
-          <div className="phone-numbers">
+          <div className="header-phone-numbers">
             <div className="inner-phone">
               <div className="number-area-1">
                 <strong>PH FOR RHINOPLASTY:</strong>
@@ -45,7 +45,7 @@ export default function Header({ className }) {
             </div>
           </div>
 
-          <div className="top-bar-menu-container">
+          <div className="header-top-bar-menu-container">
             <NavigationMenu
               id={styles['top-navigation']}
               className={navClasses}
