@@ -134,13 +134,7 @@ export default function Footer() {
           </div>
           <div className="right-part">
             <a className="logo-footer" href="https://cocorubyplasticsurgery.com.au/" target="_blank" rel="noopener noreferrer">
-              <Image
-                src="/logofooter.jpg"
-                width={400}
-                height={80}
-                alt="Cocoruby Plastic Surgery logo"
-                layout="responsive"
-              />
+              
             </a>
             <div className="social-links"> 
               <a href="https://www.facebook.com/drstephenkleid" target="_blank" rel="noopener noreferrer">
