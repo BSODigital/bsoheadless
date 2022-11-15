@@ -142,7 +142,7 @@ export default function Footer() {
                 layout="responsive"
               />
             </a>
-            <div class="social-links"> 
+            <div className="social-links"> 
               <a href="https://www.facebook.com/drstephenkleid" target="_blank" rel="noopener noreferrer">
                 <FaFacebookF
                   title="Facebook"
