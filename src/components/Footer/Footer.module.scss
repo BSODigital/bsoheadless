@@ -23,12 +23,12 @@
     padding: 20px 0;
     & > div {
       width:50%;
-    }
-    .left-part {
-      text-align:left;
-    }
-    .right-part {
-      text-align:right;
+      &:first-child {
+        text-align: left;
+      }
+      &:last-child {
+        text-align:right;
+      }
     }
   }
 }
