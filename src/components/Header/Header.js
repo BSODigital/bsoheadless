@@ -23,13 +23,16 @@ export default function Header({ className }) {
     isNavShown ? styles['show'] : undefined,
   ]);
   const phoneNumbersClasses = cn([styles.headerphonenumbers])
-  const topBarMenuContainerClasses = cn([styles.header-top-bar-menu-container])
+  const containerHeaderClasses = cn([
+    styles['container container-header cf']
+  ])
+  const topBarMenuContainerClasses = cn([styles.headertopbarmenucontainer])
 
   return (
     <header className={headerClasses}>
       <SkipNavigationLink />
       <div className="greenbg">
-        <div className="container container-header cf">
+        <div className={containerHeaderClasses}>
 
           <div className={phoneNumbersClasses}>
             <div className="inner-phone">
