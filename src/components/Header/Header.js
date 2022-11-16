@@ -29,7 +29,7 @@ export default function Header({ className }) {
       <div className="greenbg">
         <div className="container container-header cf">
 
-          <div className="{styles.headerPhoneNumbers}">
+          <div className="{styles.headerphonenumbers}">
             <div className="inner-phone">
               <div className="number-area-1">
                 <strong>PH FOR RHINOPLASTY:</strong>
