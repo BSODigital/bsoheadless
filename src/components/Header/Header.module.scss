@@ -14,11 +14,16 @@
 .headertopbarmenucontainer {
   width:50%;
   text-align: right;
-  padding:10px 0;
+  
   ul {
+    margin:0;
+    list-style: none;
     li {
+      display: inline-block;
+      vertical-align: middle;
       a {
         color:$color-white;
+        padding:10px;
       }
     }
   }
