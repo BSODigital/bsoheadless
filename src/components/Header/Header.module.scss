@@ -2,14 +2,11 @@
 
 .header {
   background-color: $color-white;
-  .header-phone-numbers {
-    color:red;
-  }
 }
 .container-header{
   display: flex;
 }
-.header-phone-numbers {
+.headerPhoneNumbers {
   padding:17px 0;
   letter-spacing: .5px;
   width:50%;
