@@ -30,33 +30,33 @@ export default function Header({ className }) {
     <header className={headerClasses}>
       <SkipNavigationLink />
       <div className="greenbg">
-        <div className="container {headerClasses} cf">
+        <div className="container cf">
+          <div className={topBarContainer}>
+            <div className={phoneNumbersClasses}>
+              <div className="inner-phone">
+                <div className="number-area-1">
+                  <strong>PH FOR RHINOPLASTY:</strong>
+                    <Link href="tel:1300264811">
+                      <a title="phone number">1300 264 811</a>
+                    </Link> 
+                    or <strong>EAR NOSE AND THROAT:</strong> 
+                    <Link href="tel:0390381630">
+                      <a title="phone number 2">03 9038 1630</a>
+                    </Link>
+                    
+                  </div>
+              </div>
+            </div>
 
-          <div className={phoneNumbersClasses}>
-            <div className="inner-phone">
-              <div className="number-area-1">
-                <strong>PH FOR RHINOPLASTY:</strong>
-                  <Link href="tel:1300264811">
-                    <a title="phone number">1300 264 811</a>
-                  </Link> 
-                  or <strong>EAR NOSE AND THROAT:</strong> 
-                  <Link href="tel:0390381630">
-                    <a title="phone number 2">03 9038 1630</a>
-                  </Link>
-                  
-                </div>
+            <div className={topBarMenuContainerClasses}>
+              <NavigationMenu
+                id={styles['top-navigation']}
+                className={navClasses}
+                menuLocation={MENUS.TOP_LOCATION}
+              >
+              </NavigationMenu>
             </div>
           </div>
-
-          <div className={topBarMenuContainerClasses}>
-            <NavigationMenu
-              id={styles['top-navigation']}
-              className={navClasses}
-              menuLocation={MENUS.TOP_LOCATION}
-            >
-            </NavigationMenu>
-          </div>
-
         </div>
       </div>
 
