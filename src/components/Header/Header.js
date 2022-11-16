@@ -19,7 +19,8 @@ export default function Header({ className }) {
 
   const headerClasses = cn([styles.header, className]);
   const navClasses = cn([
-    styles['primary-navigation','header-phone-numbers'],
+    styles['primary-navigation'],
+    styles['header-phone-numbers'],
     isNavShown ? styles['show'] : undefined,
   ]);
 
