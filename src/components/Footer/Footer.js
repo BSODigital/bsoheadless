@@ -1,15 +1,15 @@
-// import * as MENUS from 'constants/menus';
+import * as MENUS from 'constants/menus';
 
-// import appConfig from 'app.config';
+import appConfig from 'app.config';
 import {
   FaFacebookF,
-  // FaGithub,
+  FaGithub,
   FaInstagram,
   FaLinkedinIn,
-  // FaTwitter,
+  FaTwitter,
   FaYoutube,
 } from 'react-icons/fa';
-// import { NavigationMenu } from 'components';
+import { NavigationMenu } from 'components';
 
 import styles from './Footer.module.scss';
 
@@ -21,28 +21,112 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className="container">
+        {appConfig?.socialLinks && (
+          <div className={styles['social-links']}>
+            <ul aria-label="Social media">
+              {appConfig.socialLinks?.twitterUrl && (
+                <li>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles['social-icon-link']}
+                    href={appConfig.socialLinks.twitterUrl}
+                  >
+                    <FaTwitter
+                      title="Twitter"
+                      className={styles['social-icon']}
+                    />
+                  </a>
+                </li>
+              )}
 
-        <div className="footer-columns">
-          <div className="column">
-            <div className="footer-title">Ear, Nose, Throat</div>
-            <div className="footer-content">
-              <p><strong>Masada Medical Centre</strong><br/> Level 1, 26 Balaclava Road,<br/> East St Kilda, VIC<br/> <a href="tel:0390381630">03 9038 1630</a><br/> <a href="mailto:skleid@stephenkleid.com">skleid@stephenkleid.com</a></p>
-            </div>
-          </div>
-          <div className="column">
-            <div className="footer-title">RHINOPLASTY</div>
-            <div className="footer-content">
-              <p><strong>Coco Ruby Plastic Surgery</strong><br/> 759 Burwood Rd,<br/> Hawthorn East, VIC<br/> <a href="tel:1300599990">1300 599 990</a><br/> <a href="mailto:enquiries@cocoruby.com.au">enquiries@cocoruby.com.au</a></p><p>&nbsp;</p><p><strong>&nbsp;</strong></p>
-            </div>
-          </div>
-          <div className="column">
-            <div className="footer-title">CLINIC HOURS</div>
-            <div className="footer-content">
-              <p style="text-align: center;"><strong>Mon – Fri </strong>9 am – 5 pm</p>
-            </div>
-          </div>
+              {appConfig.socialLinks?.facebookUrl && (
+                <li>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles['social-icon-link']}
+                    href={appConfig.socialLinks.facebookUrl}
+                  >
+                    <FaFacebookF
+                      title="Facebook"
+                      className={styles['social-icon']}
+                    />
+                  </a>
+                </li>
+              )}
 
-        </div>
+              {appConfig.socialLinks?.instagramUrl && (
+                <li>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles['social-icon-link']}
+                    href={appConfig.socialLinks.instagramUrl}
+                  >
+                    <FaInstagram
+                      title="Instagram"
+                      className={styles['social-icon']}
+                    />
+                  </a>
+                </li>
+              )}
+
+              {appConfig.socialLinks?.youtubeUrl && (
+                <li>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles['social-icon-link']}
+                    href={appConfig.socialLinks.youtubeUrl}
+                  >
+                    <FaYoutube
+                      title="YouTube"
+                      className={styles['social-icon']}
+                    />
+                  </a>
+                </li>
+              )}
+
+              {appConfig.socialLinks?.githubUrl && (
+                <li>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles['social-icon-link']}
+                    href={appConfig.socialLinks.githubUrl}
+                  >
+                    <FaGithub
+                      title="GitHub"
+                      className={styles['social-icon']}
+                    />
+                  </a>
+                </li>
+              )}
+
+              {appConfig.socialLinks?.linkedinUrl && (
+                <li>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles['social-icon-link']}
+                    href={appConfig.socialLinks.linkedinUrl}
+                  >
+                    <FaLinkedinIn
+                      title="LinkedIn"
+                      className={styles['social-icon']}
+                    />
+                  </a>
+                </li>
+              )}
+            </ul>
+          </div>
+        )}
+
+        <NavigationMenu
+          className={styles.nav}
+          menuLocation={MENUS.FOOTER_LOCATION}
+        />
 
         <div className={styles.copyright}>
           <div className="left-part">
