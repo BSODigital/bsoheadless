@@ -108,5 +108,11 @@ export async function getStaticProps(context) {
   return getNextStaticProps(context, {
     Page,
     client,
+    home {
+      homeBannerImage {
+        id
+        link
+      }
+    }
   });
 }
