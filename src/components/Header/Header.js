@@ -23,7 +23,7 @@ export default function Header({ className }) {
     isNavShown ? styles['show'] : undefined,
   ]);
   const phoneNumbersClasses = cn([styles.headerphonenumbers])
-  const topBarMenuContainerClasses = cn([styles.header-top-bar-menu-container])
+  const topBarMenuContainerClasses = cn([styles.headertopbarmenucontainer])
 
   return (
     <header className={headerClasses}>
