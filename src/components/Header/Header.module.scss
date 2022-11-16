@@ -14,6 +14,7 @@
 .headertopbarmenucontainer {
   width:50%;
   text-align: right;
+  padding:10px 0;
 }
 
 .bar {
@@ -71,6 +72,7 @@
     text-transform: uppercase;
     font-size: 1.4rem;
     margin: 0;
+
 
     @media (min-width: $breakpoint-small) {
       flex-direction: row;
