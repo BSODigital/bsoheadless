@@ -24,12 +24,13 @@ export default function Header({ className }) {
   ]);
   const phoneNumbersClasses = cn([styles.headerphonenumbers])
   const topBarMenuContainerClasses = cn([styles.headertopbarmenucontainer])
+  const topBarContainer = cn([styles.containerheader])
 
   return (
     <header className={headerClasses}>
       <SkipNavigationLink />
       <div className="greenbg">
-        <div className="container container-header cf">
+        <div className="container {headerClasses} cf">
 
           <div className={phoneNumbersClasses}>
             <div className="inner-phone">
