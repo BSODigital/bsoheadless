@@ -1,4 +1,4 @@
-import * as MENUS from 'constants/menus';
+// import * as MENUS from 'constants/menus';
 
 // import appConfig from 'app.config';
 import {
@@ -9,7 +9,7 @@ import {
   // FaTwitter,
   FaYoutube,
 } from 'react-icons/fa';
-import { NavigationMenu } from 'components';
+// import { NavigationMenu } from 'components';
 
 import styles from './Footer.module.scss';
 
