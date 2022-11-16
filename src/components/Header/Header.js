@@ -23,6 +23,7 @@ export default function Header({ className }) {
     isNavShown ? styles['show'] : undefined,
   ]);
   const phoneNumbersClasses = cn([styles.headerphonenumbers])
+  const topBarMenuContainerClasses = cn([styles.header-top-bar-menu-container])
 
   return (
     <header className={headerClasses}>
@@ -46,7 +47,7 @@ export default function Header({ className }) {
             </div>
           </div>
 
-          <div className="header-top-bar-menu-container">
+          <div className={topBarMenuContainerClasses}>
             <NavigationMenu
               id={styles['top-navigation']}
               className={navClasses}
