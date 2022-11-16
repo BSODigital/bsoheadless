@@ -23,40 +23,39 @@ export default function Header({ className }) {
     isNavShown ? styles['show'] : undefined,
   ]);
   const phoneNumbersClasses = cn([styles.headerphonenumbers])
-  const containerHeaderClasses = cn([styles.topbarcontainer])
-  const topBarMenuContainerClasses = cn([styles.headertopbarmenucontainer])
+  const topBarMenuContainerClasses = cn([styles.header-top-bar-menu-container])
 
   return (
     <header className={headerClasses}>
       <SkipNavigationLink />
       <div className="greenbg">
-        <div className="container cf">
-          <div className={containerHeaderClasses}
-            <div className={phoneNumbersClasses}>
-              <div className="inner-phone">
-                <div className="number-area-1">
-                  <strong>PH FOR RHINOPLASTY:</strong>
-                    <Link href="tel:1300264811">
-                      <a title="phone number">1300 264 811</a>
-                    </Link> 
-                    or <strong>EAR NOSE AND THROAT:</strong> 
-                    <Link href="tel:0390381630">
-                      <a title="phone number 2">03 9038 1630</a>
-                    </Link>
-                    
-                  </div>
-              </div>
-            </div>
+        <div className="container container-header cf">
 
-            <div className={topBarMenuContainerClasses}>
-              <NavigationMenu
-                id={styles['top-navigation']}
-                className={navClasses}
-                menuLocation={MENUS.TOP_LOCATION}
-              >
-              </NavigationMenu>
+          <div className={phoneNumbersClasses}>
+            <div className="inner-phone">
+              <div className="number-area-1">
+                <strong>PH FOR RHINOPLASTY:</strong>
+                  <Link href="tel:1300264811">
+                    <a title="phone number">1300 264 811</a>
+                  </Link> 
+                  or <strong>EAR NOSE AND THROAT:</strong> 
+                  <Link href="tel:0390381630">
+                    <a title="phone number 2">03 9038 1630</a>
+                  </Link>
+                  
+                </div>
             </div>
           </div>
+
+          <div className={topBarMenuContainerClasses}>
+            <NavigationMenu
+              id={styles['top-navigation']}
+              className={navClasses}
+              menuLocation={MENUS.TOP_LOCATION}
+            >
+            </NavigationMenu>
+          </div>
+
         </div>
       </div>
 
