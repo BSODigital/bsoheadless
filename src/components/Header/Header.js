@@ -20,9 +20,9 @@ export default function Header({ className }) {
   const headerClasses = cn([styles.header, className]);
   const navClasses = cn([
     styles['primary-navigation'],
-    styles['header-phone-numbers'],
     isNavShown ? styles['show'] : undefined,
   ]);
+  const phoneNumbersClasses = cn([styles.headerphonenumbers])
 
   return (
     <header className={headerClasses}>
@@ -30,7 +30,7 @@ export default function Header({ className }) {
       <div className="greenbg">
         <div className="container container-header cf">
 
-          <div className="{styles['header-phone-numbers']}">
+          <div className={phoneNumbersClasses}>
             <div className="inner-phone">
               <div className="number-area-1">
                 <strong>PH FOR RHINOPLASTY:</strong>
