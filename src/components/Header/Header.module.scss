@@ -2,6 +2,9 @@
 
 .header {
   background-color: $color-white;
+  .header-phone-numbers {
+    color:red;
+  }
 }
 .container-header{
   display: flex;
