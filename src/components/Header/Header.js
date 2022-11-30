@@ -48,7 +48,7 @@ export default function Header({ className }) {
               </div>
             </div>
 
-            <div className={topBarMenuContainerClasses}>
+            <div className={topBarMenuContainerClasses} >
               <NavigationMenu
                 id={styles['top-navigation']}
                 menuLocation={MENUS.TOP_LOCATION}
