@@ -22,11 +22,11 @@
     display: inline-block;
     color: #4b4c4d;
     text-transform: uppercase;
-  }
-  .separator {
-    display: inline-block;
-    padding: 0 10px;
-    color: $color-grey;
+    &:before {
+      content:' | ';
+      display: inline-block;
+      vertical-align:middle;
+    }
   }
 }
 
