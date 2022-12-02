@@ -61,22 +61,22 @@ export default function Page() {
               <div className="column">
                 <ul className={styles.logos}>
                   <li>
-                    <img src="/static/logo-1.jpg" alt="Logo" />
+                    <Image src="/static/logo-1.jpg" alt="Logo" />
                   </li>
                   <li>
-                    <img src="/static/logo-2.jpg" alt="Logo" />
+                    <Image src="/static/logo-2.jpg" alt="Logo" />
                   </li>
                   <li>
-                    <img src="/static/logo-3.jpg" alt="Logo" />
+                    <Image src="/static/logo-3.jpg" alt="Logo" />
                   </li>
                   <li>
-                    <img src="/static/logo-4.jpg" alt="Logo" />
+                    <Image src="/static/logo-4.jpg" alt="Logo" />
                   </li>
                   <li>
-                    <img src="/static/logo-5.jpg" alt="Logo" />
+                    <Image src="/static/logo-5.jpg" alt="Logo" />
                   </li>
                   <li>
-                    <img src="/static/logo-6.jpg" alt="Logo" />
+                    <Image src="/static/logo-6.jpg" alt="Logo" />
                   </li>
                 </ul>
               </div>  
@@ -99,7 +99,7 @@ export default function Page() {
                   <li>
                     <div className={styles.procedureicon}></div>
                     <h4>Rhinoplasty</h4>
-                    <div className={styles.proceduretext}>Your nose is one of the most prominent features on your face, and if you're not happy with it, it can really affect your self-confidence.   Dr Stephen Kleid is a highly experienced rhinoplasty surgeon who can help you achieve the look you're after. With over 20 years experience, Dr Kleid will be able to give you the results you're looking for.</div> 
+                    <div className={styles.proceduretext}>Your nose is one of the most prominent features on your face, and if you&#39;re not happy with it, it can really affect your self-confidence. Dr Stephen Kleid is a highly experienced rhinoplasty surgeon who can help you achieve the look you're after. With over 20 years experience, Dr Kleid will be able to give you the results you're looking for.</div> 
                     <a className={styles.procedurebutton + ' button-center button button-grey'} href="https://www.drstephenkleid.com.au/nose-surgery/">Learn more</a>
                   </li>
                   <li>
@@ -132,7 +132,7 @@ export default function Page() {
                 <a className="button" href="https://www.drstephenkleid.com.au/about/">Read more</a>
               </div>
               <div className={styles.aboutright + ' column column-50'}>
-                <img src="static/home-about-right.jpg" alt=""/>
+                <Image src="static/home-about-right.jpg" alt=""/>
               </div>
             </div>
           </div>
@@ -184,7 +184,7 @@ export default function Page() {
                 <a className={styles.gallerybutton+' button'} href="/before-after-photos/">Gallery</a>
               </div>  
               <div className={styles.galleryright + ' column column-50'}>
-                <img src="static/gallery.png" alt=""/>
+                <Image src="static/gallery.png" alt=""/>
               </div>  
             </div>
           </div>
