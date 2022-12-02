@@ -3,9 +3,8 @@
 .post-list {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  column-gap: 5rem;
+  column-gap: 2rem;
   row-gap: 6rem;
-  margin-bottom: 6rem;
 
   @media (min-width: $breakpoint-small) {
     grid-template-columns: repeat(3, 1fr);
@@ -13,9 +12,17 @@
 }
 
 .info {
-  font-size: 1.2rem;
-  line-height: 1.5rem;
-  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  time {
+    display: inline-block;
+    color: $color-green;
+  }
+  span {
+    display: inline-block;
+    color: #4b4c4d;
+    text-transform: uppercase;
+  }
 }
 
 .container {
@@ -32,25 +39,16 @@
 }
 
 .header {
-  margin-bottom: 1rem;
-  padding: 0 2rem;
-
-  a:hover,
-  a:focus {
-    color: var(--color-primary);
-  }
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 1px;
+  color: #4b4c4d;
+  padding: 20px 0;
 }
 
 .image {
   width: 100%;
   margin: 0;
   height: auto;
-}
-
-.image-holder {
-  margin-bottom: 3rem;
-
-  @media (min-width: $breakpoint-small) {
-    aspect-ratio: 1 / 1;
-  }
 }
