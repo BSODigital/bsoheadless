@@ -99,7 +99,7 @@ export default function Page() {
                   <li>
                     <div className={styles.procedureicon}></div>
                     <h4>Rhinoplasty</h4>
-                    <div className={styles.proceduretext}>Your nose is one of the most prominent features on your face, and if you&#39;re not happy with it, it can really affect your self-confidence. Dr Stephen Kleid is a highly experienced rhinoplasty surgeon who can help you achieve the look you're after. With over 20 years experience, Dr Kleid will be able to give you the results you're looking for.</div> 
+                    <div className={styles.proceduretext}>Your nose is one of the most prominent features on your face, and if you&#39;re not happy with it, it can really affect your self-confidence. Dr Stephen Kleid is a highly experienced rhinoplasty surgeon who can help you achieve the look you&#39;re after. With over 20 years experience, Dr Kleid will be able to give you the results you&#39;re looking for.</div> 
                     <a className={styles.procedurebutton + ' button-center button button-grey'} href="https://www.drstephenkleid.com.au/nose-surgery/">Learn more</a>
                   </li>
                   <li>
@@ -132,7 +132,7 @@ export default function Page() {
                 <a className="button" href="https://www.drstephenkleid.com.au/about/">Read more</a>
               </div>
               <div className={styles.aboutright + ' column column-50'}>
-                <Image src="static/home-about-right.jpg" alt=""/>
+                <Image src="/static/home-about-right.jpg" alt=""/>
               </div>
             </div>
           </div>
@@ -148,7 +148,7 @@ export default function Page() {
                   <li>
                     <div className={styles.serviceicon}></div>
                     <h4>Before Your Surgery</h4>
-                    <div className={styles.servicecontent}>Read google patient reviews and the FAQ's to learn more about Dr Stephen Kleid.</div>
+                    <div className={styles.servicecontent}>Read google patient reviews and the FAQ&#39;s to learn more about Dr Stephen Kleid.</div>
                   </li>
                   <li>
                     <div className={styles.serviceicon}></div>
@@ -180,11 +180,11 @@ export default function Page() {
             <div className="row">
               <div className={styles.galleryleft + ' column column-50'}>
                 <h2>Before and After Gallery</h2>
-                <div className={styles.gallerytext}>Here you can view actual before and after surgery photographs of Dr Kleid's past patients.</div>
+                <div className={styles.gallerytext}>Here you can view actual before and after surgery photographs of Dr Kleid&#39;s past patients.</div>
                 <a className={styles.gallerybutton+' button'} href="/before-after-photos/">Gallery</a>
               </div>  
               <div className={styles.galleryright + ' column column-50'}>
-                <Image src="static/gallery.png" alt=""/>
+                <Image src="/static/gallery.png" alt=""/>
               </div>  
             </div>
           </div>
