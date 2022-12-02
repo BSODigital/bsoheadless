@@ -62,22 +62,22 @@ export default function Page() {
               <div className="column">
                 <ul className={styles.logos}>
                   <li>
-                    <Image src="/static/logo-1.jpg" alt="Logo" />
+                    <Image src="/static/logo-1.jpg" alt="Logo" width="150px"/>
                   </li>
                   <li>
-                    <Image src="/static/logo-2.jpg" alt="Logo" />
+                    <Image src="/static/logo-2.jpg" alt="Logo" width="150px" />
                   </li>
                   <li>
-                    <Image src="/static/logo-3.jpg" alt="Logo" />
+                    <Image src="/static/logo-3.jpg" alt="Logo" width="150px" />
                   </li>
                   <li>
-                    <Image src="/static/logo-4.jpg" alt="Logo" />
+                    <Image src="/static/logo-4.jpg" alt="Logo" width="150px" />
                   </li>
                   <li>
-                    <Image src="/static/logo-5.jpg" alt="Logo" />
+                    <Image src="/static/logo-5.jpg" alt="Logo" width="150px" />
                   </li>
                   <li>
-                    <Image src="/static/logo-6.jpg" alt="Logo" />
+                    <Image src="/static/logo-6.jpg" alt="Logo" width="150px" />
                   </li>
                 </ul>
               </div>  
