@@ -62,22 +62,22 @@ export default function Page() {
               <div className="column">
                 <ul className={styles.logos}>
                   <li>
-                    <Image src="/static/logo-1.jpg" alt="Logo" width="150px" height="90px"/>
+                    <Image src="/static/logo-1.jpg" alt="Logo" width={150} height={90} layout="responsive" />
                   </li>
                   <li>
-                    <Image src="/static/logo-2.jpg" alt="Logo" width={150} height={90} />
+                    <Image src="/static/logo-2.jpg" alt="Logo" width={150} height={90} layout="responsive"  />
                   </li>
                   <li>
-                    <Image src="/static/logo-3.jpg" alt="Logo" width={150} height={90} />
+                    <Image src="/static/logo-3.jpg" alt="Logo" width={150} height={90} layout="responsive"  />
                   </li>
                   <li>
-                    <Image src="/static/logo-4.jpg" alt="Logo" width={150} height={90} />
+                    <Image src="/static/logo-4.jpg" alt="Logo" width={150} height={90} layout="responsive"  />
                   </li>
                   <li>
-                    <Image src="/static/logo-5.jpg" alt="Logo" width={150} height={90} />
+                    <Image src="/static/logo-5.jpg" alt="Logo" width={150} height={90} layout="responsive"  />
                   </li>
                   <li>
-                    <Image src="/static/logo-6.jpg" alt="Logo" width={150} height={90} />
+                    <Image src="/static/logo-6.jpg" alt="Logo" width={150} height={90} layout="responsive"  />
                   </li>
                 </ul>
               </div>  
@@ -133,7 +133,7 @@ export default function Page() {
                 <a className="button" href="https://www.drstephenkleid.com.au/about/">Read more</a>
               </div>
               <div className={styles.aboutright + ' column column-50'}>
-                <Image src="/static/home-about-right.jpg" alt=""/>
+                <Image src="/static/home-about-right.jpg" alt="Image right" width={730} height={438} layout="responsive" />
               </div>
             </div>
           </div>
@@ -185,7 +185,7 @@ export default function Page() {
                 <a className={styles.gallerybutton+' button'} href="/before-after-photos/">Gallery</a>
               </div>  
               <div className={styles.galleryright + ' column column-50'}>
-                <Image src="/static/gallery.png" alt=""/>
+                <Image src="/static/gallery.png" alt="gallery image" width={730} height={438} layout="responsive" />
               </div>  
             </div>
           </div>
