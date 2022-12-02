@@ -1,6 +1,7 @@
 import { getNextStaticProps } from '@faustjs/next';
 import React from 'react';
 import { client } from 'client';
+import Image from 'next/image';
 import {
   Posts,
   Header,
