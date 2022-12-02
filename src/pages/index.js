@@ -1,16 +1,11 @@
 import { getNextStaticProps } from '@faustjs/next';
 import React from 'react';
 import { client } from 'client';
-import { FaArrowRight } from 'react-icons/fa';
 import {
   Posts,
   Header,
   Footer,
-  EntryHeader,
   Main,
-  Button,
-  Heading,
-  CTA,
   SEO,
 } from 'components';
 import styles from 'styles/pages/_Home.module.scss';
