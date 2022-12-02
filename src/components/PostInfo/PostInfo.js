@@ -18,6 +18,7 @@ export default function PostInfo({ className, author, date }) {
           <FormatDate date={date} />
         </time>
       )}
+      <div className={styles.separator}
       {date && author && <>&nbsp;</>}
       {author && <span>By {author}</span>}
     </div>
