@@ -51,3 +51,87 @@
     color:#fff;
   }
 }
+.silverbg{
+  background:$color-silver;
+}
+
+
+
+.pinkbox {
+    position: absolute;
+    bottom: 80px;
+    height: 180px;
+    background: $color-pink;
+    width: 40%;
+    right: 0;
+}
+.pinkbox2 {
+    bottom: 1px;
+    height: 300px;
+}
+
+.shaped-bg {
+    height: 164px;
+    width: 100%;
+    background-image: url('/static/shape-bottom.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.shaped-bg-top {
+  height: 164px;
+    width: 100%;
+    background-image: url('/static/shape-top.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.button, button, input[type=button], input[type=reset], input[type=submit] {
+    cursor: pointer;
+    color: #FFFFFF;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: $color-green;
+    display: inline-block;
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+    border: 1px solid $color-green;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 600;
+    min-width: 200px;
+    letter-spacing: 2px;
+    text-align: center;
+    &:hover, &:focus, &:active {
+      background-color: darken($color-green, 10%);
+      border: 1px solid darken($color-green, 10%);
+    }
+    &.button-white {
+      background: $color-white;
+      color: $color-green;
+      border: 1px solid $color-white;
+      &:hover, &:focus, &:active {
+        border: 1px solid $color-green;
+      }
+    }
+    &.button-grey {
+      background: $color-grey;
+      color: $color-white;
+      border: 1px solid $color-grey;
+      &:hover, &:focus, &:active {
+        border: 1px solid $color-green;
+        background: $color-green;
+
+      }
+    }
+}
+
+.title-size {
+  font-size: 35px;
+}
+
+.full-height {
+  height:100%;
+}

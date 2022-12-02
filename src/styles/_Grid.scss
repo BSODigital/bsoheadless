@@ -57,6 +57,10 @@
     align-items: baseline;
   }
 
+  &.row-content-center {
+    justify-content: center;
+  }
+
   .column {
     display: block;
     flex: 1 1 auto;
