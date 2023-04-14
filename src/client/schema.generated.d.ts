@@ -88,6 +88,8 @@ export interface CategoryToCategoryConnectionWhereArgs {
   slug?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']>;
 }
@@ -100,7 +102,7 @@ export interface CategoryToContentNodeConnectionWhereArgs {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -154,7 +156,7 @@ export interface CategoryToPostConnectionWhereArgs {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -190,13 +192,20 @@ export interface CategoryToPostConnectionWhereArgs {
   tagIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Array of tag IDs, used to display objects from one tag OR another */
   tagNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  /** Array of tag slugs, used to display objects from one tag OR another */
+  /** Array of tag slugs, used to display objects from one tag AND another */
   tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  /** Array of tag slugs, used to exclude objects in specified tags */
+  /** Array of tag slugs, used to include objects in ANY specified tags */
   tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']>;
 }
+
+/** The Type of Identifier used to fetch a single comment node. Default is "ID". To be used along with the "id" field. */
+export type CommentNodeIdTypeEnum =
+  /** Identify a resource by the Database ID. */
+  | 'DATABASE_ID'
+  /** Identify a resource by the (hashed) Global ID. */
+  | 'ID';
 
 /** Arguments for filtering the CommentToCommentConnection connection */
 export interface CommentToCommentConnectionWhereArgs {
@@ -230,7 +239,7 @@ export interface CommentToCommentConnectionWhereArgs {
   contentIdIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Array of content object IDs to exclude affiliated comments for. */
   contentIdNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  /** Content object name to retrieve affiliated comments for. */
+  /** Content object name (i.e. slug ) to retrieve affiliated comments for. */
   contentName?: InputMaybe<Scalars['String']>;
   /** Content Object parent ID to retrieve affiliated comments for. */
   contentParent?: InputMaybe<Scalars['Int']>;
@@ -292,7 +301,7 @@ export interface CommentToParentCommentConnectionWhereArgs {
   contentIdIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Array of content object IDs to exclude affiliated comments for. */
   contentIdNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  /** Content object name to retrieve affiliated comments for. */
+  /** Content object name (i.e. slug ) to retrieve affiliated comments for. */
   contentName?: InputMaybe<Scalars['String']>;
   /** Content Object parent ID to retrieve affiliated comments for. */
   contentParent?: InputMaybe<Scalars['Int']>;
@@ -390,7 +399,7 @@ export interface ContentTypeToContentNodeConnectionWhereArgs {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -465,13 +474,13 @@ export interface CreateCommentInput {
   authorUrl?: InputMaybe<Scalars['String']>;
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: InputMaybe<Scalars['String']>;
-  /** The ID of the post object the comment belongs to. */
+  /** The database ID of the post object the comment belongs to. */
   commentOn?: InputMaybe<Scalars['Int']>;
   /** Content of the comment. */
   content?: InputMaybe<Scalars['String']>;
   /** The date of the object. Preferable to enter as year/month/day ( e.g. 01/31/2017 ) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
   date?: InputMaybe<Scalars['String']>;
-  /** Parent comment of current comment. */
+  /** Parent comment ID of current comment. */
   parent?: InputMaybe<Scalars['ID']>;
   /** Type of comment. */
   type?: InputMaybe<Scalars['String']>;
@@ -499,7 +508,7 @@ export interface CreateMediaItemInput {
   filePath?: InputMaybe<Scalars['String']>;
   /** The file type of the mediaItem */
   fileType?: InputMaybe<MimeTypeEnum>;
-  /** The WordPress post ID or the graphQL postId of the parent object */
+  /** The ID of the parent object */
   parentId?: InputMaybe<Scalars['ID']>;
   /** The ping status for the mediaItem */
   pingStatus?: InputMaybe<Scalars['String']>;
@@ -777,7 +786,7 @@ export interface HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArg
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -817,7 +826,7 @@ export interface HierarchicalContentNodeToContentNodeChildrenConnectionWhereArgs
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -920,7 +929,7 @@ export interface MediaItemToCommentConnectionWhereArgs {
   contentIdIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Array of content object IDs to exclude affiliated comments for. */
   contentIdNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  /** Content object name to retrieve affiliated comments for. */
+  /** Content object name (i.e. slug ) to retrieve affiliated comments for. */
   contentName?: InputMaybe<Scalars['String']>;
   /** Content Object parent ID to retrieve affiliated comments for. */
   contentParent?: InputMaybe<Scalars['Int']>;
@@ -959,7 +968,7 @@ export type MenuItemNodeIdTypeEnum =
 
 /** Arguments for filtering the MenuItemToMenuItemConnection connection */
 export interface MenuItemToMenuItemConnectionWhereArgs {
-  /** The ID of the object */
+  /** The database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** The menu location for the menu being queried */
   location?: InputMaybe<MenuLocationEnum>;
@@ -974,7 +983,9 @@ export type MenuLocationEnum =
   /** Put the menu in the footer location */
   | 'FOOTER'
   /** Put the menu in the primary location */
-  | 'PRIMARY';
+  | 'PRIMARY'
+  /** Put the menu in the top location */
+  | 'TOP';
 
 /** The Type of Identifier used to fetch a single node. Default is "ID". To be used along with the "id" field. */
 export type MenuNodeIdTypeEnum =
@@ -982,12 +993,16 @@ export type MenuNodeIdTypeEnum =
   | 'DATABASE_ID'
   /** Identify a menu node by the (hashed) Global ID. */
   | 'ID'
-  /** Identify a menu node by it's name */
-  | 'NAME';
+  /** Identify a menu node by the slug of menu location to which it is assigned */
+  | 'LOCATION'
+  /** Identify a menu node by its name */
+  | 'NAME'
+  /** Identify a menu node by its slug */
+  | 'SLUG';
 
 /** Arguments for filtering the MenuToMenuItemConnection connection */
 export interface MenuToMenuItemConnectionWhereArgs {
-  /** The ID of the object */
+  /** The database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** The menu location for the menu being queried */
   location?: InputMaybe<MenuLocationEnum>;
@@ -1226,7 +1241,7 @@ export interface PageToCommentConnectionWhereArgs {
   contentIdIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Array of content object IDs to exclude affiliated comments for. */
   contentIdNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  /** Content object name to retrieve affiliated comments for. */
+  /** Content object name (i.e. slug ) to retrieve affiliated comments for. */
   contentName?: InputMaybe<Scalars['String']>;
   /** Content Object parent ID to retrieve affiliated comments for. */
   contentParent?: InputMaybe<Scalars['Int']>;
@@ -1256,7 +1271,7 @@ export interface PageToCommentConnectionWhereArgs {
   userId?: InputMaybe<Scalars['ID']>;
 }
 
-/** Arguments for filtering the pageToRevisionConnection connection */
+/** Arguments for filtering the PageToRevisionConnection connection */
 export interface PageToRevisionConnectionWhereArgs {
   /** The user that's connected as the author of the object. Use the userId for the author object. */
   author?: InputMaybe<Scalars['Int']>;
@@ -1270,7 +1285,7 @@ export interface PageToRevisionConnectionWhereArgs {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -1301,6 +1316,23 @@ export interface PageToRevisionConnectionWhereArgs {
   /** Title of the object */
   title?: InputMaybe<Scalars['String']>;
 }
+
+/** The status of the WordPress plugin. */
+export type PluginStatusEnum =
+  /** The plugin is currently active. */
+  | 'ACTIVE'
+  /** The plugin is a drop-in plugin. */
+  | 'DROP_IN'
+  /** The plugin is currently inactive. */
+  | 'INACTIVE'
+  /** The plugin is a must-use plugin. */
+  | 'MUST_USE'
+  /** The plugin is technically active but was paused while loading. */
+  | 'PAUSED'
+  /** The plugin was active recently. */
+  | 'RECENTLY_ACTIVE'
+  /** The plugin has an upgrade available. */
+  | 'UPGRADE';
 
 /** Set relationships between the post to categories */
 export interface PostCategoriesInput {
@@ -1343,7 +1375,7 @@ export interface PostFormatToContentNodeConnectionWhereArgs {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -1397,7 +1429,7 @@ export interface PostFormatToPostConnectionWhereArgs {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -1433,9 +1465,9 @@ export interface PostFormatToPostConnectionWhereArgs {
   tagIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Array of tag IDs, used to display objects from one tag OR another */
   tagNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  /** Array of tag slugs, used to display objects from one tag OR another */
+  /** Array of tag slugs, used to display objects from one tag AND another */
   tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  /** Array of tag slugs, used to exclude objects in specified tags */
+  /** Array of tag slugs, used to include objects in ANY specified tags */
   tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']>;
@@ -1454,9 +1486,9 @@ export type PostIdType =
 
 /** The format of post field data. */
 export type PostObjectFieldFormatEnum =
-  /** Provide the field value directly from database */
+  /** Provide the field value directly from database. Null on unauthenticated requests. */
   | 'RAW'
-  /** Apply the default WordPress rendering */
+  /** Provide the field value as rendered by WordPress. Default. */
   | 'RENDERED';
 
 /** The column to use when filtering by date */
@@ -1519,6 +1551,8 @@ export interface PostPostFormatsNodeInput {
 
 /** The status of the object. */
 export type PostStatusEnum =
+  /** Objects with the acf-disabled status */
+  | 'ACF_DISABLED'
   /** Objects with the auto-draft status */
   | 'AUTO_DRAFT'
   /** Objects with the draft status */
@@ -1604,6 +1638,8 @@ export interface PostToCategoryConnectionWhereArgs {
   slug?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']>;
 }
@@ -1640,7 +1676,7 @@ export interface PostToCommentConnectionWhereArgs {
   contentIdIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Array of content object IDs to exclude affiliated comments for. */
   contentIdNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  /** Content object name to retrieve affiliated comments for. */
+  /** Content object name (i.e. slug ) to retrieve affiliated comments for. */
   contentName?: InputMaybe<Scalars['String']>;
   /** Content Object parent ID to retrieve affiliated comments for. */
   contentParent?: InputMaybe<Scalars['Int']>;
@@ -1710,11 +1746,13 @@ export interface PostToPostFormatConnectionWhereArgs {
   slug?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']>;
 }
 
-/** Arguments for filtering the postToRevisionConnection connection */
+/** Arguments for filtering the PostToRevisionConnection connection */
 export interface PostToRevisionConnectionWhereArgs {
   /** The user that's connected as the author of the object. Use the userId for the author object. */
   author?: InputMaybe<Scalars['Int']>;
@@ -1736,7 +1774,7 @@ export interface PostToRevisionConnectionWhereArgs {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -1772,9 +1810,9 @@ export interface PostToRevisionConnectionWhereArgs {
   tagIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Array of tag IDs, used to display objects from one tag OR another */
   tagNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  /** Array of tag slugs, used to display objects from one tag OR another */
+  /** Array of tag slugs, used to display objects from one tag AND another */
   tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  /** Array of tag slugs, used to exclude objects in specified tags */
+  /** Array of tag slugs, used to include objects in ANY specified tags */
   tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']>;
@@ -1820,6 +1858,8 @@ export interface PostToTagConnectionWhereArgs {
   slug?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']>;
 }
@@ -1866,6 +1906,8 @@ export interface PostToTermNodeConnectionWhereArgs {
   taxonomies?: InputMaybe<Array<InputMaybe<TaxonomyEnum>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']>;
 }
@@ -1975,6 +2017,8 @@ export interface RootQueryToCategoryConnectionWhereArgs {
   slug?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']>;
 }
@@ -2011,7 +2055,7 @@ export interface RootQueryToCommentConnectionWhereArgs {
   contentIdIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Array of content object IDs to exclude affiliated comments for. */
   contentIdNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  /** Content object name to retrieve affiliated comments for. */
+  /** Content object name (i.e. slug ) to retrieve affiliated comments for. */
   contentName?: InputMaybe<Scalars['String']>;
   /** Content Object parent ID to retrieve affiliated comments for. */
   contentParent?: InputMaybe<Scalars['Int']>;
@@ -2049,7 +2093,7 @@ export interface RootQueryToContentNodeConnectionWhereArgs {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -2089,7 +2133,7 @@ export interface RootQueryToContentRevisionUnionConnectionWhereArgs {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -2135,7 +2179,7 @@ export interface RootQueryToMediaItemConnectionWhereArgs {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -2169,7 +2213,7 @@ export interface RootQueryToMediaItemConnectionWhereArgs {
 
 /** Arguments for filtering the RootQueryToMenuConnection connection */
 export interface RootQueryToMenuConnectionWhereArgs {
-  /** The ID of the object */
+  /** The database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** The menu location for the menu being queried */
   location?: InputMaybe<MenuLocationEnum>;
@@ -2179,7 +2223,7 @@ export interface RootQueryToMenuConnectionWhereArgs {
 
 /** Arguments for filtering the RootQueryToMenuItemConnection connection */
 export interface RootQueryToMenuItemConnectionWhereArgs {
-  /** The ID of the object */
+  /** The database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** The menu location for the menu being queried */
   location?: InputMaybe<MenuLocationEnum>;
@@ -2203,7 +2247,7 @@ export interface RootQueryToPageConnectionWhereArgs {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -2235,6 +2279,16 @@ export interface RootQueryToPageConnectionWhereArgs {
   title?: InputMaybe<Scalars['String']>;
 }
 
+/** Arguments for filtering the RootQueryToPluginConnection connection */
+export interface RootQueryToPluginConnectionWhereArgs {
+  /** Show plugin based on a keyword search. */
+  search?: InputMaybe<Scalars['String']>;
+  /** Retrieve plugins where plugin status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PluginStatusEnum>>>;
+  /** Show plugins with a specific status. */
+  status?: InputMaybe<PluginStatusEnum>;
+}
+
 /** Arguments for filtering the RootQueryToPostConnection connection */
 export interface RootQueryToPostConnectionWhereArgs {
   /** The user that's connected as the author of the object. Use the userId for the author object. */
@@ -2257,7 +2311,7 @@ export interface RootQueryToPostConnectionWhereArgs {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -2293,9 +2347,9 @@ export interface RootQueryToPostConnectionWhereArgs {
   tagIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Array of tag IDs, used to display objects from one tag OR another */
   tagNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  /** Array of tag slugs, used to display objects from one tag OR another */
+  /** Array of tag slugs, used to display objects from one tag AND another */
   tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  /** Array of tag slugs, used to exclude objects in specified tags */
+  /** Array of tag slugs, used to include objects in ANY specified tags */
   tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']>;
@@ -2341,6 +2395,8 @@ export interface RootQueryToPostFormatConnectionWhereArgs {
   slug?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']>;
 }
@@ -2385,6 +2441,8 @@ export interface RootQueryToTagConnectionWhereArgs {
   slug?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']>;
 }
@@ -2431,6 +2489,8 @@ export interface RootQueryToTermNodeConnectionWhereArgs {
   taxonomies?: InputMaybe<Array<InputMaybe<TaxonomyEnum>>>;
   /** Array of term taxonomy IDs, to match when querying terms. */
   termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Whether to prime meta caches for matched terms. Default true. */
   updateTermMetaCache?: InputMaybe<Scalars['Boolean']>;
 }
@@ -2500,7 +2560,7 @@ export interface TagToContentNodeConnectionWhereArgs {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -2554,7 +2614,7 @@ export interface TagToPostConnectionWhereArgs {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -2590,9 +2650,9 @@ export interface TagToPostConnectionWhereArgs {
   tagIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Array of tag IDs, used to display objects from one tag OR another */
   tagNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  /** Array of tag slugs, used to display objects from one tag OR another */
+  /** Array of tag slugs, used to display objects from one tag AND another */
   tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  /** Array of tag slugs, used to exclude objects in specified tags */
+  /** Array of tag slugs, used to include objects in ANY specified tags */
   tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']>;
@@ -2674,7 +2734,7 @@ export interface UpdateCommentInput {
   authorUrl?: InputMaybe<Scalars['String']>;
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: InputMaybe<Scalars['String']>;
-  /** The ID of the post object the comment belongs to. */
+  /** The database ID of the post object the comment belongs to. */
   commentOn?: InputMaybe<Scalars['Int']>;
   /** Content of the comment. */
   content?: InputMaybe<Scalars['String']>;
@@ -2682,7 +2742,7 @@ export interface UpdateCommentInput {
   date?: InputMaybe<Scalars['String']>;
   /** The ID of the comment being updated. */
   id: Scalars['ID'];
-  /** Parent comment of current comment. */
+  /** Parent comment ID of current comment. */
   parent?: InputMaybe<Scalars['ID']>;
   /** Type of comment. */
   type?: InputMaybe<Scalars['String']>;
@@ -2712,7 +2772,7 @@ export interface UpdateMediaItemInput {
   fileType?: InputMaybe<MimeTypeEnum>;
   /** The ID of the mediaItem object */
   id: Scalars['ID'];
-  /** The WordPress post ID or the graphQL postId of the parent object */
+  /** The ID of the parent object */
   parentId?: InputMaybe<Scalars['ID']>;
   /** The ping status for the mediaItem */
   pingStatus?: InputMaybe<Scalars['String']>;
@@ -2810,9 +2870,6 @@ export interface UpdatePostInput {
 
 /** Input for the updateSettings mutation */
 export interface UpdateSettingsInput {
-  atlasContentModelerSettingsSettingsAtlasContentModelerUsageTracking?: InputMaybe<
-    Scalars['String']
-  >;
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: InputMaybe<Scalars['String']>;
   /** Allow people to submit comments on new posts. */
@@ -2837,8 +2894,14 @@ export interface UpdateSettingsInput {
   generalSettingsTitle?: InputMaybe<Scalars['String']>;
   /** Site URL. */
   generalSettingsUrl?: InputMaybe<Scalars['String']>;
+  /** The ID of the page that should display the latest posts */
+  readingSettingsPageForPosts?: InputMaybe<Scalars['Int']>;
+  /** The ID of the page that should be displayed on the front page */
+  readingSettingsPageOnFront?: InputMaybe<Scalars['Int']>;
   /** Blog pages show at most. */
   readingSettingsPostsPerPage?: InputMaybe<Scalars['Int']>;
+  /** What to show on the front page */
+  readingSettingsShowOnFront?: InputMaybe<Scalars['String']>;
   /** Default post category. */
   writingSettingsDefaultCategory?: InputMaybe<Scalars['Int']>;
   /** Default post format. */
@@ -2963,7 +3026,7 @@ export interface UserToCommentConnectionWhereArgs {
   contentIdIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Array of content object IDs to exclude affiliated comments for. */
   contentIdNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  /** Content object name to retrieve affiliated comments for. */
+  /** Content object name (i.e. slug ) to retrieve affiliated comments for. */
   contentName?: InputMaybe<Scalars['String']>;
   /** Content Object parent ID to retrieve affiliated comments for. */
   contentParent?: InputMaybe<Scalars['Int']>;
@@ -3001,7 +3064,7 @@ export interface UserToContentRevisionUnionConnectionWhereArgs {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -3047,7 +3110,7 @@ export interface UserToMediaItemConnectionWhereArgs {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -3093,7 +3156,7 @@ export interface UserToPageConnectionWhereArgs {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -3147,7 +3210,7 @@ export interface UserToPostConnectionWhereArgs {
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
   hasPassword?: InputMaybe<Scalars['Boolean']>;
-  /** Specific ID of the object */
+  /** Specific database ID of the object */
   id?: InputMaybe<Scalars['Int']>;
   /** Array of IDs for the objects to retrieve */
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
@@ -3183,9 +3246,9 @@ export interface UserToPostConnectionWhereArgs {
   tagIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   /** Array of tag IDs, used to display objects from one tag OR another */
   tagNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  /** Array of tag slugs, used to display objects from one tag OR another */
+  /** Array of tag slugs, used to display objects from one tag AND another */
   tagSlugAnd?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-  /** Array of tag slugs, used to exclude objects in specified tags */
+  /** Array of tag slugs, used to include objects in ANY specified tags */
   tagSlugIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']>;
@@ -3233,9 +3296,10 @@ export type UsersConnectionSearchColumnEnum =
 
 export declare const scalarsEnumsHash: import('gqty').ScalarsEnumsHash;
 export declare const generatedSchema: {
-  AtlasContentModelerSettingsSettings: {
+  AcfFieldGroup: {
     __typename: { __type: 'String!' };
-    atlasContentModelerUsageTracking: { __type: 'String' };
+    fieldGroupName: { __type: 'String' };
+    $on: { __type: '$AcfFieldGroup!' };
   };
   Avatar: {
     __typename: { __type: 'String!' };
@@ -3359,6 +3423,7 @@ export declare const generatedSchema: {
     search: { __type: 'String' };
     slug: { __type: '[String]' };
     termTaxonomId: { __type: '[ID]' };
+    termTaxonomyId: { __type: '[ID]' };
     updateTermMetaCache: { __type: 'Boolean' };
   };
   CategoryToContentNodeConnection: {
@@ -4219,7 +4284,13 @@ export declare const generatedSchema: {
     file: { __type: 'String' };
     height: { __type: 'Int' };
     meta: { __type: 'MediaItemMeta' };
-    sizes: { __type: '[MediaSize]' };
+    sizes: {
+      __type: '[MediaSize]';
+      __args: {
+        exclude: '[MediaItemSizeEnum]';
+        include: '[MediaItemSizeEnum]';
+      };
+    };
     width: { __type: 'Int' };
   };
   MediaItem: {
@@ -4439,6 +4510,7 @@ export declare const generatedSchema: {
     path: { __type: 'String' };
     target: { __type: 'String' };
     title: { __type: 'String' };
+    uri: { __type: 'String' };
     url: { __type: 'String' };
   };
   MenuItemLinkable: {
@@ -4504,6 +4576,7 @@ export declare const generatedSchema: {
     author: { __type: 'NodeWithAuthorToUserConnectionEdge' };
     authorDatabaseId: { __type: 'Int' };
     authorId: { __type: 'ID' };
+    id: { __type: 'ID!' };
     $on: { __type: '$NodeWithAuthor!' };
   };
   NodeWithAuthorToUserConnectionEdge: {
@@ -4514,6 +4587,7 @@ export declare const generatedSchema: {
     __typename: { __type: 'String!' };
     commentCount: { __type: 'Int' };
     commentStatus: { __type: 'String' };
+    id: { __type: 'ID!' };
     $on: { __type: '$NodeWithComments!' };
   };
   NodeWithContentEditor: {
@@ -4522,6 +4596,7 @@ export declare const generatedSchema: {
       __type: 'String';
       __args: { format: 'PostObjectFieldFormatEnum' };
     };
+    id: { __type: 'ID!' };
     $on: { __type: '$NodeWithContentEditor!' };
   };
   NodeWithExcerpt: {
@@ -4530,47 +4605,15 @@ export declare const generatedSchema: {
       __type: 'String';
       __args: { format: 'PostObjectFieldFormatEnum' };
     };
+    id: { __type: 'ID!' };
     $on: { __type: '$NodeWithExcerpt!' };
   };
   NodeWithFeaturedImage: {
     __typename: { __type: 'String!' };
-    conditionalTags: { __type: 'ConditionalTags' };
-    contentType: { __type: 'ContentNodeToContentTypeConnectionEdge' };
-    contentTypeName: { __type: 'String!' };
-    databaseId: { __type: 'Int!' };
-    date: { __type: 'String' };
-    dateGmt: { __type: 'String' };
-    desiredSlug: { __type: 'String' };
-    editingLockedBy: { __type: 'ContentNodeToEditLockConnectionEdge' };
-    enclosure: { __type: 'String' };
-    enqueuedScripts: {
-      __type: 'ContentNodeToEnqueuedScriptConnection';
-      __args: { after: 'String'; before: 'String'; first: 'Int'; last: 'Int' };
-    };
-    enqueuedStylesheets: {
-      __type: 'ContentNodeToEnqueuedStylesheetConnection';
-      __args: { after: 'String'; before: 'String'; first: 'Int'; last: 'Int' };
-    };
     featuredImage: { __type: 'NodeWithFeaturedImageToMediaItemConnectionEdge' };
     featuredImageDatabaseId: { __type: 'Int' };
     featuredImageId: { __type: 'ID' };
-    guid: { __type: 'String' };
     id: { __type: 'ID!' };
-    isContentNode: { __type: 'Boolean!' };
-    isPreview: { __type: 'Boolean' };
-    isRestricted: { __type: 'Boolean' };
-    isTermNode: { __type: 'Boolean!' };
-    lastEditedBy: { __type: 'ContentNodeToEditLastConnectionEdge' };
-    link: { __type: 'String' };
-    modified: { __type: 'String' };
-    modifiedGmt: { __type: 'String' };
-    previewRevisionDatabaseId: { __type: 'Int' };
-    previewRevisionId: { __type: 'ID' };
-    slug: { __type: 'String' };
-    status: { __type: 'String' };
-    template: { __type: 'ContentTemplate' };
-    templates: { __type: '[String]' };
-    uri: { __type: 'String' };
     $on: { __type: '$NodeWithFeaturedImage!' };
   };
   NodeWithFeaturedImageToMediaItemConnectionEdge: {
@@ -4579,11 +4622,13 @@ export declare const generatedSchema: {
   };
   NodeWithPageAttributes: {
     __typename: { __type: 'String!' };
+    id: { __type: 'ID!' };
     menuOrder: { __type: 'Int' };
     $on: { __type: '$NodeWithPageAttributes!' };
   };
   NodeWithRevisions: {
     __typename: { __type: 'String!' };
+    id: { __type: 'ID!' };
     isRevision: { __type: 'Boolean' };
     revisionOf: { __type: 'NodeWithRevisionsToContentNodeConnectionEdge' };
     $on: { __type: '$NodeWithRevisions!' };
@@ -4594,11 +4639,13 @@ export declare const generatedSchema: {
   };
   NodeWithTemplate: {
     __typename: { __type: 'String!' };
+    id: { __type: 'ID!' };
     template: { __type: 'ContentTemplate' };
     $on: { __type: '$NodeWithTemplate!' };
   };
   NodeWithTitle: {
     __typename: { __type: 'String!' };
+    id: { __type: 'ID!' };
     title: {
       __type: 'String';
       __args: { format: 'PostObjectFieldFormatEnum' };
@@ -4607,6 +4654,7 @@ export declare const generatedSchema: {
   };
   NodeWithTrackbacks: {
     __typename: { __type: 'String!' };
+    id: { __type: 'ID!' };
     pingStatus: { __type: 'String' };
     pinged: { __type: '[String]' };
     toPing: { __type: '[String]' };
@@ -4673,7 +4721,9 @@ export declare const generatedSchema: {
     featuredImage: { __type: 'NodeWithFeaturedImageToMediaItemConnectionEdge' };
     featuredImageDatabaseId: { __type: 'Int' };
     featuredImageId: { __type: 'ID' };
+    gallery: { __type: 'Page_Gallery' };
     guid: { __type: 'String' };
+    home: { __type: 'Page_Home' };
     id: { __type: 'ID!' };
     isContentNode: { __type: 'Boolean!' };
     isFrontPage: { __type: 'Boolean!' };
@@ -4797,6 +4847,16 @@ export declare const generatedSchema: {
     stati: { __type: '[PostStatusEnum]' };
     status: { __type: 'PostStatusEnum' };
     title: { __type: 'String' };
+  };
+  Page_Gallery: {
+    __typename: { __type: 'String!' };
+    fieldGroupName: { __type: 'String' };
+    galleryImages: { __type: '[MediaItem]' };
+  };
+  Page_Home: {
+    __typename: { __type: 'String!' };
+    fieldGroupName: { __type: 'String' };
+    homeBannerImage: { __type: 'MediaItem' };
   };
   Plugin: {
     __typename: { __type: 'String!' };
@@ -5128,6 +5188,7 @@ export declare const generatedSchema: {
     search: { __type: 'String' };
     slug: { __type: '[String]' };
     termTaxonomId: { __type: '[ID]' };
+    termTaxonomyId: { __type: '[ID]' };
     updateTermMetaCache: { __type: 'Boolean' };
   };
   PostToCommentConnection: {
@@ -5203,6 +5264,7 @@ export declare const generatedSchema: {
     search: { __type: 'String' };
     slug: { __type: '[String]' };
     termTaxonomId: { __type: '[ID]' };
+    termTaxonomyId: { __type: '[ID]' };
     updateTermMetaCache: { __type: 'Boolean' };
   };
   PostToPreviewConnectionEdge: {
@@ -5284,6 +5346,7 @@ export declare const generatedSchema: {
     search: { __type: 'String' };
     slug: { __type: '[String]' };
     termTaxonomId: { __type: '[ID]' };
+    termTaxonomyId: { __type: '[ID]' };
     updateTermMetaCache: { __type: 'Boolean' };
   };
   PostToTermNodeConnection: {
@@ -5318,6 +5381,7 @@ export declare const generatedSchema: {
     slug: { __type: '[String]' };
     taxonomies: { __type: '[TaxonomyEnum]' };
     termTaxonomId: { __type: '[ID]' };
+    termTaxonomyId: { __type: '[ID]' };
     updateTermMetaCache: { __type: 'Boolean' };
   };
   PostTypeLabelDetails: {
@@ -5350,7 +5414,10 @@ export declare const generatedSchema: {
   };
   ReadingSettings: {
     __typename: { __type: 'String!' };
+    pageForPosts: { __type: 'Int' };
+    pageOnFront: { __type: 'Int' };
     postsPerPage: { __type: 'Int' };
+    showOnFront: { __type: 'String' };
   };
   RegisterUserInput: {
     aim: { __type: 'String' };
@@ -5428,6 +5495,7 @@ export declare const generatedSchema: {
     search: { __type: 'String' };
     slug: { __type: '[String]' };
     termTaxonomId: { __type: '[ID]' };
+    termTaxonomyId: { __type: '[ID]' };
     updateTermMetaCache: { __type: 'Boolean' };
   };
   RootQueryToCommentConnection: {
@@ -5679,6 +5747,11 @@ export declare const generatedSchema: {
     cursor: { __type: 'String' };
     node: { __type: 'Plugin' };
   };
+  RootQueryToPluginConnectionWhereArgs: {
+    search: { __type: 'String' };
+    stati: { __type: '[PluginStatusEnum]' };
+    status: { __type: 'PluginStatusEnum' };
+  };
   RootQueryToPostConnection: {
     __typename: { __type: 'String!' };
     edges: { __type: '[RootQueryToPostConnectionEdge]' };
@@ -5754,6 +5827,7 @@ export declare const generatedSchema: {
     search: { __type: 'String' };
     slug: { __type: '[String]' };
     termTaxonomId: { __type: '[ID]' };
+    termTaxonomyId: { __type: '[ID]' };
     updateTermMetaCache: { __type: 'Boolean' };
   };
   RootQueryToTagConnection: {
@@ -5787,6 +5861,7 @@ export declare const generatedSchema: {
     search: { __type: 'String' };
     slug: { __type: '[String]' };
     termTaxonomId: { __type: '[ID]' };
+    termTaxonomyId: { __type: '[ID]' };
     updateTermMetaCache: { __type: 'Boolean' };
   };
   RootQueryToTaxonomyConnection: {
@@ -5832,6 +5907,7 @@ export declare const generatedSchema: {
     slug: { __type: '[String]' };
     taxonomies: { __type: '[TaxonomyEnum]' };
     termTaxonomId: { __type: '[ID]' };
+    termTaxonomyId: { __type: '[ID]' };
     updateTermMetaCache: { __type: 'Boolean' };
   };
   RootQueryToThemeConnection: {
@@ -5895,9 +5971,6 @@ export declare const generatedSchema: {
   };
   Settings: {
     __typename: { __type: 'String!' };
-    atlasContentModelerSettingsSettingsAtlasContentModelerUsageTracking: {
-      __type: 'String';
-    };
     discussionSettingsDefaultCommentStatus: { __type: 'String' };
     discussionSettingsDefaultPingStatus: { __type: 'String' };
     generalSettingsDateFormat: { __type: 'String' };
@@ -5909,7 +5982,10 @@ export declare const generatedSchema: {
     generalSettingsTimezone: { __type: 'String' };
     generalSettingsTitle: { __type: 'String' };
     generalSettingsUrl: { __type: 'String' };
+    readingSettingsPageForPosts: { __type: 'Int' };
+    readingSettingsPageOnFront: { __type: 'Int' };
     readingSettingsPostsPerPage: { __type: 'Int' };
+    readingSettingsShowOnFront: { __type: 'String' };
     writingSettingsDefaultCategory: { __type: 'Int' };
     writingSettingsDefaultPostFormat: { __type: 'String' };
     writingSettingsUseSmilies: { __type: 'Boolean' };
@@ -6283,9 +6359,6 @@ export declare const generatedSchema: {
     post: { __type: 'Post' };
   };
   UpdateSettingsInput: {
-    atlasContentModelerSettingsSettingsAtlasContentModelerUsageTracking: {
-      __type: 'String';
-    };
     clientMutationId: { __type: 'String' };
     discussionSettingsDefaultCommentStatus: { __type: 'String' };
     discussionSettingsDefaultPingStatus: { __type: 'String' };
@@ -6298,7 +6371,10 @@ export declare const generatedSchema: {
     generalSettingsTimezone: { __type: 'String' };
     generalSettingsTitle: { __type: 'String' };
     generalSettingsUrl: { __type: 'String' };
+    readingSettingsPageForPosts: { __type: 'Int' };
+    readingSettingsPageOnFront: { __type: 'Int' };
     readingSettingsPostsPerPage: { __type: 'Int' };
+    readingSettingsShowOnFront: { __type: 'String' };
     writingSettingsDefaultCategory: { __type: 'Int' };
     writingSettingsDefaultPostFormat: { __type: 'String' };
     writingSettingsUseSmilies: { __type: 'Boolean' };
@@ -6306,9 +6382,6 @@ export declare const generatedSchema: {
   UpdateSettingsPayload: {
     __typename: { __type: 'String!' };
     allSettings: { __type: 'Settings' };
-    atlasContentModelerSettingsSettings: {
-      __type: 'AtlasContentModelerSettingsSettings';
-    };
     clientMutationId: { __type: 'String' };
     discussionSettings: { __type: 'DiscussionSettings' };
     generalSettings: { __type: 'GeneralSettings' };
@@ -6820,9 +6893,6 @@ export declare const generatedSchema: {
   query: {
     __typename: { __type: 'String!' };
     allSettings: { __type: 'Settings' };
-    atlasContentModelerSettingsSettings: {
-      __type: 'AtlasContentModelerSettingsSettings';
-    };
     categories: {
       __type: 'RootQueryToCategoryConnection';
       __args: {
@@ -6837,7 +6907,10 @@ export declare const generatedSchema: {
       __type: 'Category';
       __args: { id: 'ID!'; idType: 'CategoryIdType' };
     };
-    comment: { __type: 'Comment'; __args: { id: 'ID!' } };
+    comment: {
+      __type: 'Comment';
+      __args: { id: 'ID!'; idType: 'CommentNodeIdTypeEnum' };
+    };
     comments: {
       __type: 'RootQueryToCommentConnection';
       __args: {
@@ -6949,7 +7022,13 @@ export declare const generatedSchema: {
     plugin: { __type: 'Plugin'; __args: { id: 'ID!' } };
     plugins: {
       __type: 'RootQueryToPluginConnection';
-      __args: { after: 'String'; before: 'String'; first: 'Int'; last: 'Int' };
+      __args: {
+        after: 'String';
+        before: 'String';
+        first: 'Int';
+        last: 'Int';
+        where: 'RootQueryToPluginConnectionWhereArgs';
+      };
     };
     post: {
       __type: 'Post';
@@ -7134,20 +7213,22 @@ export declare const generatedSchema: {
     NodeWithFeaturedImage: ['Page', 'Post'];
     NodeWithPageAttributes: ['Page'];
     NodeWithRevisions: ['Page', 'Post'];
+    AcfFieldGroup: ['Page_Gallery', 'Page_Home'];
     NodeWithExcerpt: ['Post'];
     NodeWithTrackbacks: ['Post'];
   };
 };
 
 /**
- * The atlasContentModelerSettings setting type
+ * A Field Group registered by ACF
  */
-export interface AtlasContentModelerSettingsSettings {
-  __typename?: 'AtlasContentModelerSettingsSettings';
+export interface AcfFieldGroup {
+  __typename?: 'Page_Gallery' | 'Page_Home';
   /**
-   * The string Settings Group
+   * The name of the ACF Field Group
    */
-  atlasContentModelerUsageTracking?: Maybe<ScalarsEnums['String']>;
+  fieldGroupName?: Maybe<ScalarsEnums['String']>;
+  $on: $AcfFieldGroup;
 }
 
 /**
@@ -7233,7 +7314,7 @@ export interface Category {
    */
   categoryId?: Maybe<ScalarsEnums['Int']>;
   /**
-   * Connection between the category type and the category type
+   * Connection between the category type and its children categories.
    */
   children: (args?: {
     /**
@@ -7262,7 +7343,7 @@ export interface Category {
    */
   conditionalTags?: Maybe<ConditionalTags>;
   /**
-   * Connection between the category type and the ContentNode type
+   * Connection between the Category type and the ContentNode type
    */
   contentNodes: (args?: {
     /**
@@ -7365,7 +7446,7 @@ export interface Category {
    */
   name?: Maybe<ScalarsEnums['String']>;
   /**
-   * Connection between the category type and the category type
+   * Connection between the category type and its parent category.
    */
   parent?: Maybe<CategoryToParentCategoryConnectionEdge>;
   /**
@@ -7377,7 +7458,7 @@ export interface Category {
    */
   parentId?: Maybe<ScalarsEnums['ID']>;
   /**
-   * Connection between the category type and the post type
+   * Connection between the Category type and the post type
    */
   posts: (args?: {
     /**
@@ -7406,7 +7487,7 @@ export interface Category {
    */
   slug?: Maybe<ScalarsEnums['String']>;
   /**
-   * Connection between the category type and the Taxonomy type
+   * Connection between the Category type and the Taxonomy type
    */
   taxonomy?: Maybe<CategoryToTaxonomyConnectionEdge>;
   /**
@@ -7429,7 +7510,7 @@ export interface Category {
 }
 
 /**
- * Connection between the category type and the category type
+ * Connection between the Category type and the category type
  */
 export interface CategoryToAncestorsCategoryConnection {
   __typename?: 'CategoryToAncestorsCategoryConnection';
@@ -7463,7 +7544,7 @@ export interface CategoryToAncestorsCategoryConnectionEdge {
 }
 
 /**
- * Connection between the category type and the category type
+ * Connection between the Category type and the category type
  */
 export interface CategoryToCategoryConnection {
   __typename?: 'CategoryToCategoryConnection';
@@ -7497,7 +7578,7 @@ export interface CategoryToCategoryConnectionEdge {
 }
 
 /**
- * Connection between the category type and the ContentNode type
+ * Connection between the Category type and the ContentNode type
  */
 export interface CategoryToContentNodeConnection {
   __typename?: 'CategoryToContentNodeConnection';
@@ -7531,7 +7612,7 @@ export interface CategoryToContentNodeConnectionEdge {
 }
 
 /**
- * Connection between the category type and the category type
+ * Connection between the Category type and the category type
  */
 export interface CategoryToParentCategoryConnectionEdge {
   __typename?: 'CategoryToParentCategoryConnectionEdge';
@@ -7542,7 +7623,7 @@ export interface CategoryToParentCategoryConnectionEdge {
 }
 
 /**
- * Connection between the category type and the post type
+ * Connection between the Category type and the post type
  */
 export interface CategoryToPostConnection {
   __typename?: 'CategoryToPostConnection';
@@ -7576,7 +7657,7 @@ export interface CategoryToPostConnectionEdge {
 }
 
 /**
- * Connection between the category type and the Taxonomy type
+ * Connection between the Category type and the Taxonomy type
  */
 export interface CategoryToTaxonomyConnectionEdge {
   __typename?: 'CategoryToTaxonomyConnectionEdge';
@@ -9174,7 +9255,16 @@ export interface MediaDetails {
   /**
    * The available sizes of the mediaItem
    */
-  sizes?: Maybe<Array<Maybe<MediaSize>>>;
+  sizes: (args?: {
+    /**
+     * The sizes to exclude. Will take precedence over `include`.
+     */
+    exclude?: Maybe<Array<Maybe<MediaItemSizeEnum>>>;
+    /**
+     * The sizes to include. Can be overridden by `exclude`.
+     */
+    include?: Maybe<Array<Maybe<MediaItemSizeEnum>>>;
+  }) => Maybe<Array<Maybe<MediaSize>>>;
   /**
    * The width of the mediaItem
    */
@@ -9270,7 +9360,7 @@ export interface MediaItem {
    */
   commentStatus?: Maybe<ScalarsEnums['String']>;
   /**
-   * Connection between the mediaItem type and the Comment type
+   * Connection between the MediaItem type and the Comment type
    */
   comments: (args?: {
     /**
@@ -9582,7 +9672,7 @@ export interface MediaItemMeta {
 }
 
 /**
- * Connection between the mediaItem type and the Comment type
+ * Connection between the MediaItem type and the Comment type
  */
 export interface MediaItemToCommentConnection {
   __typename?: 'MediaItemToCommentConnection';
@@ -9820,6 +9910,10 @@ export interface MenuItem {
    */
   title?: Maybe<ScalarsEnums['String']>;
   /**
+   * The uri of the resource the menu item links to
+   */
+  uri?: Maybe<ScalarsEnums['String']>;
+  /**
    * URL or destination of the menu item.
    */
   url?: Maybe<ScalarsEnums['String']>;
@@ -9990,6 +10084,10 @@ export interface NodeWithAuthor {
    * The globally unique identifier of the author of the node
    */
   authorId?: Maybe<ScalarsEnums['ID']>;
+  /**
+   * The globally unique ID for the object
+   */
+  id: ScalarsEnums['ID'];
   $on: $NodeWithAuthor;
 }
 
@@ -10017,6 +10115,10 @@ export interface NodeWithComments {
    * Whether the comments are open or closed for this particular post.
    */
   commentStatus?: Maybe<ScalarsEnums['String']>;
+  /**
+   * The globally unique ID for the object
+   */
+  id: ScalarsEnums['ID'];
   $on: $NodeWithComments;
 }
 
@@ -10034,6 +10136,10 @@ export interface NodeWithContentEditor {
      */
     format?: Maybe<PostObjectFieldFormatEnum>;
   }) => Maybe<ScalarsEnums['String']>;
+  /**
+   * The globally unique ID for the object
+   */
+  id: ScalarsEnums['ID'];
   $on: $NodeWithContentEditor;
 }
 
@@ -10051,6 +10157,10 @@ export interface NodeWithExcerpt {
      */
     format?: Maybe<PostObjectFieldFormatEnum>;
   }) => Maybe<ScalarsEnums['String']>;
+  /**
+   * The globally unique ID for the object
+   */
+  id: ScalarsEnums['ID'];
   $on: $NodeWithExcerpt;
 }
 
@@ -10059,84 +10169,6 @@ export interface NodeWithExcerpt {
  */
 export interface NodeWithFeaturedImage {
   __typename?: 'Page' | 'Post';
-  /**
-   * @deprecated Deprecated in favor of using Next.js pages
-   */
-  conditionalTags?: Maybe<ConditionalTags>;
-  /**
-   * Connection between the ContentNode type and the ContentType type
-   */
-  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
-  /**
-   * The name of the Content Type the node belongs to
-   */
-  contentTypeName: ScalarsEnums['String'];
-  /**
-   * The unique identifier stored in the database
-   */
-  databaseId: ScalarsEnums['Int'];
-  /**
-   * Post publishing date.
-   */
-  date?: Maybe<ScalarsEnums['String']>;
-  /**
-   * The publishing date set in GMT.
-   */
-  dateGmt?: Maybe<ScalarsEnums['String']>;
-  /**
-   * The desired slug of the post
-   */
-  desiredSlug?: Maybe<ScalarsEnums['String']>;
-  /**
-   * If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds
-   */
-  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
-  /**
-   * The RSS enclosure for the object
-   */
-  enclosure?: Maybe<ScalarsEnums['String']>;
-  /**
-   * Connection between the ContentNode type and the EnqueuedScript type
-   */
-  enqueuedScripts: (args?: {
-    /**
-     * Cursor used along with the "first" argument to reference where in the dataset to get data
-     */
-    after?: Maybe<Scalars['String']>;
-    /**
-     * Cursor used along with the "last" argument to reference where in the dataset to get data
-     */
-    before?: Maybe<Scalars['String']>;
-    /**
-     * The number of items to return after the referenced "after" cursor
-     */
-    first?: Maybe<Scalars['Int']>;
-    /**
-     * The number of items to return before the referenced "before" cursor
-     */
-    last?: Maybe<Scalars['Int']>;
-  }) => Maybe<ContentNodeToEnqueuedScriptConnection>;
-  /**
-   * Connection between the ContentNode type and the EnqueuedStylesheet type
-   */
-  enqueuedStylesheets: (args?: {
-    /**
-     * Cursor used along with the "first" argument to reference where in the dataset to get data
-     */
-    after?: Maybe<Scalars['String']>;
-    /**
-     * Cursor used along with the "last" argument to reference where in the dataset to get data
-     */
-    before?: Maybe<Scalars['String']>;
-    /**
-     * The number of items to return after the referenced "after" cursor
-     */
-    first?: Maybe<Scalars['Int']>;
-    /**
-     * The number of items to return before the referenced "before" cursor
-     */
-    last?: Maybe<Scalars['Int']>;
-  }) => Maybe<ContentNodeToEnqueuedStylesheetConnection>;
   /**
    * Connection between the NodeWithFeaturedImage type and the MediaItem type
    */
@@ -10150,70 +10182,9 @@ export interface NodeWithFeaturedImage {
    */
   featuredImageId?: Maybe<ScalarsEnums['ID']>;
   /**
-   * The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
-   */
-  guid?: Maybe<ScalarsEnums['String']>;
-  /**
-   * The unique resource identifier path
+   * The globally unique ID for the object
    */
   id: ScalarsEnums['ID'];
-  /**
-   * Whether the node is a Content Node
-   */
-  isContentNode: ScalarsEnums['Boolean'];
-  /**
-   * Whether the object is a node in the preview state
-   */
-  isPreview?: Maybe<ScalarsEnums['Boolean']>;
-  /**
-   * Whether the object is restricted from the current viewer
-   */
-  isRestricted?: Maybe<ScalarsEnums['Boolean']>;
-  /**
-   * Whether the node is a Term
-   */
-  isTermNode: ScalarsEnums['Boolean'];
-  /**
-   * The user that most recently edited the node
-   */
-  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
-  /**
-   * The permalink of the post
-   */
-  link?: Maybe<ScalarsEnums['String']>;
-  /**
-   * The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time.
-   */
-  modified?: Maybe<ScalarsEnums['String']>;
-  /**
-   * The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT.
-   */
-  modifiedGmt?: Maybe<ScalarsEnums['String']>;
-  /**
-   * The database id of the preview node
-   */
-  previewRevisionDatabaseId?: Maybe<ScalarsEnums['Int']>;
-  /**
-   * Whether the object is a node in the preview state
-   */
-  previewRevisionId?: Maybe<ScalarsEnums['ID']>;
-  /**
-   * The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
-   */
-  slug?: Maybe<ScalarsEnums['String']>;
-  /**
-   * The current status of the object
-   */
-  status?: Maybe<ScalarsEnums['String']>;
-  /**
-   * The template assigned to a node of content
-   */
-  template?: Maybe<ContentTemplate>;
-  templates?: Maybe<Array<Maybe<ScalarsEnums['String']>>>;
-  /**
-   * The unique resource identifier path
-   */
-  uri?: Maybe<ScalarsEnums['String']>;
   $on: $NodeWithFeaturedImage;
 }
 
@@ -10234,6 +10205,10 @@ export interface NodeWithFeaturedImageToMediaItemConnectionEdge {
 export interface NodeWithPageAttributes {
   __typename?: 'Page';
   /**
+   * The globally unique ID for the object
+   */
+  id: ScalarsEnums['ID'];
+  /**
    * A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types.
    */
   menuOrder?: Maybe<ScalarsEnums['Int']>;
@@ -10245,6 +10220,10 @@ export interface NodeWithPageAttributes {
  */
 export interface NodeWithRevisions {
   __typename?: 'Page' | 'Post';
+  /**
+   * The globally unique ID for the object
+   */
+  id: ScalarsEnums['ID'];
   /**
    * True if the node is a revision of another node
    */
@@ -10273,6 +10252,10 @@ export interface NodeWithRevisionsToContentNodeConnectionEdge {
 export interface NodeWithTemplate {
   __typename?: 'MediaItem' | 'Page' | 'Post';
   /**
+   * The globally unique ID for the object
+   */
+  id: ScalarsEnums['ID'];
+  /**
    * The template assigned to the node
    */
   template?: Maybe<ContentTemplate>;
@@ -10284,6 +10267,10 @@ export interface NodeWithTemplate {
  */
 export interface NodeWithTitle {
   __typename?: 'MediaItem' | 'Page' | 'Post';
+  /**
+   * The globally unique ID for the object
+   */
+  id: ScalarsEnums['ID'];
   /**
    * The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made.
    */
@@ -10301,6 +10288,10 @@ export interface NodeWithTitle {
  */
 export interface NodeWithTrackbacks {
   __typename?: 'Post';
+  /**
+   * The globally unique ID for the object
+   */
+  id: ScalarsEnums['ID'];
   /**
    * Whether the pings are open or closed for this particular post.
    */
@@ -10392,7 +10383,7 @@ export interface Page {
    */
   commentStatus?: Maybe<ScalarsEnums['String']>;
   /**
-   * Connection between the page type and the Comment type
+   * Connection between the Page type and the Comment type
    */
   comments: (args?: {
     /**
@@ -10516,9 +10507,17 @@ export interface Page {
    */
   featuredImageId?: Maybe<ScalarsEnums['ID']>;
   /**
+   * Added to the GraphQL Schema because the ACF Field Group &quot;Gallery&quot; was set to Show in GraphQL.
+   */
+  gallery?: Maybe<Page_Gallery>;
+  /**
    * The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
    */
   guid?: Maybe<ScalarsEnums['String']>;
+  /**
+   * Added to the GraphQL Schema because the ACF Field Group &quot;Home&quot; was set to Show in GraphQL.
+   */
+  home?: Maybe<Page_Home>;
   /**
    * The globally unique identifier of the page object.
    */
@@ -10593,7 +10592,7 @@ export interface Page {
    */
   parentId?: Maybe<ScalarsEnums['ID']>;
   /**
-   * Connection between the page type and the page type
+   * Connection between the Page type and the page type
    */
   preview?: Maybe<PageToPreviewConnectionEdge>;
   /**
@@ -10609,7 +10608,7 @@ export interface Page {
    */
   revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
   /**
-   * Connection between the page type and the page type
+   * Connection between the Page type and the page type
    */
   revisions: (args?: {
     /**
@@ -10642,7 +10641,7 @@ export interface Page {
    */
   status?: Maybe<ScalarsEnums['String']>;
   /**
-   * The template assigned to a node of content
+   * The template assigned to the node
    */
   template?: Maybe<ContentTemplate>;
   templates?: Maybe<Array<Maybe<ScalarsEnums['String']>>>;
@@ -10662,7 +10661,7 @@ export interface Page {
 }
 
 /**
- * Connection between the page type and the Comment type
+ * Connection between the Page type and the Comment type
  */
 export interface PageToCommentConnection {
   __typename?: 'PageToCommentConnection';
@@ -10696,7 +10695,7 @@ export interface PageToCommentConnectionEdge {
 }
 
 /**
- * Connection between the page type and the page type
+ * Connection between the Page type and the page type
  */
 export interface PageToPreviewConnectionEdge {
   __typename?: 'PageToPreviewConnectionEdge';
@@ -10707,12 +10706,12 @@ export interface PageToPreviewConnectionEdge {
 }
 
 /**
- * Connection between the page type and the page type
+ * Connection between the Page type and the page type
  */
 export interface PageToRevisionConnection {
   __typename?: 'PageToRevisionConnection';
   /**
-   * Edges for the pageToRevisionConnection connection
+   * Edges for the PageToRevisionConnection connection
    */
   edges?: Maybe<Array<Maybe<PageToRevisionConnectionEdge>>>;
   /**
@@ -10738,6 +10737,30 @@ export interface PageToRevisionConnectionEdge {
    * The item at the end of the edge
    */
   node?: Maybe<Page>;
+}
+
+/**
+ * Field Group
+ */
+export interface Page_Gallery {
+  __typename?: 'Page_Gallery';
+  /**
+   * The name of the ACF Field Group
+   */
+  fieldGroupName?: Maybe<ScalarsEnums['String']>;
+  galleryImages?: Maybe<Array<Maybe<MediaItem>>>;
+}
+
+/**
+ * Field Group
+ */
+export interface Page_Home {
+  __typename?: 'Page_Home';
+  /**
+   * The name of the ACF Field Group
+   */
+  fieldGroupName?: Maybe<ScalarsEnums['String']>;
+  homeBannerImage?: Maybe<MediaItem>;
 }
 
 /**
@@ -10801,7 +10824,7 @@ export interface Post {
    */
   authorId?: Maybe<ScalarsEnums['ID']>;
   /**
-   * Connection between the post type and the category type
+   * Connection between the Post type and the category type
    */
   categories: (args?: {
     /**
@@ -10834,7 +10857,7 @@ export interface Post {
    */
   commentStatus?: Maybe<ScalarsEnums['String']>;
   /**
-   * Connection between the post type and the Comment type
+   * Connection between the Post type and the Comment type
    */
   comments: (args?: {
     /**
@@ -11023,7 +11046,7 @@ export interface Post {
    */
   pinged?: Maybe<Array<Maybe<ScalarsEnums['String']>>>;
   /**
-   * Connection between the post type and the postFormat type
+   * Connection between the Post type and the postFormat type
    */
   postFormats: (args?: {
     /**
@@ -11053,7 +11076,7 @@ export interface Post {
    */
   postId: ScalarsEnums['Int'];
   /**
-   * Connection between the post type and the post type
+   * Connection between the Post type and the post type
    */
   preview?: Maybe<PostToPreviewConnectionEdge>;
   /**
@@ -11069,7 +11092,7 @@ export interface Post {
    */
   revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
   /**
-   * Connection between the post type and the post type
+   * Connection between the Post type and the post type
    */
   revisions: (args?: {
     /**
@@ -11102,7 +11125,7 @@ export interface Post {
    */
   status?: Maybe<ScalarsEnums['String']>;
   /**
-   * Connection between the post type and the tag type
+   * Connection between the Post type and the tag type
    */
   tags: (args?: {
     /**
@@ -11127,12 +11150,12 @@ export interface Post {
     where?: Maybe<PostToTagConnectionWhereArgs>;
   }) => Maybe<PostToTagConnection>;
   /**
-   * The template assigned to a node of content
+   * The template assigned to the node
    */
   template?: Maybe<ContentTemplate>;
   templates?: Maybe<Array<Maybe<ScalarsEnums['String']>>>;
   /**
-   * Connection between the post type and the TermNode type
+   * Connection between the Post type and the TermNode type
    */
   terms: (args?: {
     /**
@@ -11185,7 +11208,7 @@ export interface PostFormat {
    */
   conditionalTags?: Maybe<ConditionalTags>;
   /**
-   * Connection between the postFormat type and the ContentNode type
+   * Connection between the PostFormat type and the ContentNode type
    */
   contentNodes: (args?: {
     /**
@@ -11293,7 +11316,7 @@ export interface PostFormat {
    */
   postFormatId?: Maybe<ScalarsEnums['Int']>;
   /**
-   * Connection between the postFormat type and the post type
+   * Connection between the PostFormat type and the post type
    */
   posts: (args?: {
     /**
@@ -11322,7 +11345,7 @@ export interface PostFormat {
    */
   slug?: Maybe<ScalarsEnums['String']>;
   /**
-   * Connection between the postFormat type and the Taxonomy type
+   * Connection between the PostFormat type and the Taxonomy type
    */
   taxonomy?: Maybe<PostFormatToTaxonomyConnectionEdge>;
   /**
@@ -11345,7 +11368,7 @@ export interface PostFormat {
 }
 
 /**
- * Connection between the postFormat type and the ContentNode type
+ * Connection between the PostFormat type and the ContentNode type
  */
 export interface PostFormatToContentNodeConnection {
   __typename?: 'PostFormatToContentNodeConnection';
@@ -11379,7 +11402,7 @@ export interface PostFormatToContentNodeConnectionEdge {
 }
 
 /**
- * Connection between the postFormat type and the post type
+ * Connection between the PostFormat type and the post type
  */
 export interface PostFormatToPostConnection {
   __typename?: 'PostFormatToPostConnection';
@@ -11413,7 +11436,7 @@ export interface PostFormatToPostConnectionEdge {
 }
 
 /**
- * Connection between the postFormat type and the Taxonomy type
+ * Connection between the PostFormat type and the Taxonomy type
  */
 export interface PostFormatToTaxonomyConnectionEdge {
   __typename?: 'PostFormatToTaxonomyConnectionEdge';
@@ -11424,7 +11447,7 @@ export interface PostFormatToTaxonomyConnectionEdge {
 }
 
 /**
- * Connection between the post type and the category type
+ * Connection between the Post type and the category type
  */
 export interface PostToCategoryConnection {
   __typename?: 'PostToCategoryConnection';
@@ -11458,7 +11481,7 @@ export interface PostToCategoryConnectionEdge {
 }
 
 /**
- * Connection between the post type and the Comment type
+ * Connection between the Post type and the Comment type
  */
 export interface PostToCommentConnection {
   __typename?: 'PostToCommentConnection';
@@ -11492,7 +11515,7 @@ export interface PostToCommentConnectionEdge {
 }
 
 /**
- * Connection between the post type and the postFormat type
+ * Connection between the Post type and the postFormat type
  */
 export interface PostToPostFormatConnection {
   __typename?: 'PostToPostFormatConnection';
@@ -11526,7 +11549,7 @@ export interface PostToPostFormatConnectionEdge {
 }
 
 /**
- * Connection between the post type and the post type
+ * Connection between the Post type and the post type
  */
 export interface PostToPreviewConnectionEdge {
   __typename?: 'PostToPreviewConnectionEdge';
@@ -11537,12 +11560,12 @@ export interface PostToPreviewConnectionEdge {
 }
 
 /**
- * Connection between the post type and the post type
+ * Connection between the Post type and the post type
  */
 export interface PostToRevisionConnection {
   __typename?: 'PostToRevisionConnection';
   /**
-   * Edges for the postToRevisionConnection connection
+   * Edges for the PostToRevisionConnection connection
    */
   edges?: Maybe<Array<Maybe<PostToRevisionConnectionEdge>>>;
   /**
@@ -11571,7 +11594,7 @@ export interface PostToRevisionConnectionEdge {
 }
 
 /**
- * Connection between the post type and the tag type
+ * Connection between the Post type and the tag type
  */
 export interface PostToTagConnection {
   __typename?: 'PostToTagConnection';
@@ -11605,7 +11628,7 @@ export interface PostToTagConnectionEdge {
 }
 
 /**
- * Connection between the post type and the TermNode type
+ * Connection between the Post type and the TermNode type
  */
 export interface PostToTermNodeConnection {
   __typename?: 'PostToTermNodeConnection';
@@ -11751,9 +11774,21 @@ export interface PostTypeLabelDetails {
 export interface ReadingSettings {
   __typename?: 'ReadingSettings';
   /**
+   * The ID of the page that should display the latest posts
+   */
+  pageForPosts?: Maybe<ScalarsEnums['Int']>;
+  /**
+   * The ID of the page that should be displayed on the front page
+   */
+  pageOnFront?: Maybe<ScalarsEnums['Int']>;
+  /**
    * Blog pages show at most.
    */
   postsPerPage?: Maybe<ScalarsEnums['Int']>;
+  /**
+   * What to show on the front page
+   */
+  showOnFront?: Maybe<ScalarsEnums['String']>;
 }
 
 /**
@@ -12508,12 +12543,6 @@ export interface Settings {
   /**
    * Settings of the the string Settings Group
    */
-  atlasContentModelerSettingsSettingsAtlasContentModelerUsageTracking?: Maybe<
-    ScalarsEnums['String']
-  >;
-  /**
-   * Settings of the the string Settings Group
-   */
   discussionSettingsDefaultCommentStatus?: Maybe<ScalarsEnums['String']>;
   /**
    * Settings of the the string Settings Group
@@ -12558,7 +12587,19 @@ export interface Settings {
   /**
    * Settings of the the integer Settings Group
    */
+  readingSettingsPageForPosts?: Maybe<ScalarsEnums['Int']>;
+  /**
+   * Settings of the the integer Settings Group
+   */
+  readingSettingsPageOnFront?: Maybe<ScalarsEnums['Int']>;
+  /**
+   * Settings of the the integer Settings Group
+   */
   readingSettingsPostsPerPage?: Maybe<ScalarsEnums['Int']>;
+  /**
+   * Settings of the the string Settings Group
+   */
+  readingSettingsShowOnFront?: Maybe<ScalarsEnums['String']>;
   /**
    * Settings of the the integer Settings Group
    */
@@ -12583,7 +12624,7 @@ export interface Tag {
    */
   conditionalTags?: Maybe<ConditionalTags>;
   /**
-   * Connection between the tag type and the ContentNode type
+   * Connection between the Tag type and the ContentNode type
    */
   contentNodes: (args?: {
     /**
@@ -12686,7 +12727,7 @@ export interface Tag {
    */
   name?: Maybe<ScalarsEnums['String']>;
   /**
-   * Connection between the tag type and the post type
+   * Connection between the Tag type and the post type
    */
   posts: (args?: {
     /**
@@ -12720,7 +12761,7 @@ export interface Tag {
    */
   tagId?: Maybe<ScalarsEnums['Int']>;
   /**
-   * Connection between the tag type and the Taxonomy type
+   * Connection between the Tag type and the Taxonomy type
    */
   taxonomy?: Maybe<TagToTaxonomyConnectionEdge>;
   /**
@@ -12743,7 +12784,7 @@ export interface Tag {
 }
 
 /**
- * Connection between the tag type and the ContentNode type
+ * Connection between the Tag type and the ContentNode type
  */
 export interface TagToContentNodeConnection {
   __typename?: 'TagToContentNodeConnection';
@@ -12777,7 +12818,7 @@ export interface TagToContentNodeConnectionEdge {
 }
 
 /**
- * Connection between the tag type and the post type
+ * Connection between the Tag type and the post type
  */
 export interface TagToPostConnection {
   __typename?: 'TagToPostConnection';
@@ -12811,7 +12852,7 @@ export interface TagToPostConnectionEdge {
 }
 
 /**
- * Connection between the tag type and the Taxonomy type
+ * Connection between the Tag type and the Taxonomy type
  */
 export interface TagToTaxonomyConnectionEdge {
   __typename?: 'TagToTaxonomyConnectionEdge';
@@ -13373,10 +13414,6 @@ export interface UpdateSettingsPayload {
    * Update all settings.
    */
   allSettings?: Maybe<Settings>;
-  /**
-   * Update the AtlasContentModelerSettingsSettings setting.
-   */
-  atlasContentModelerSettingsSettings?: Maybe<AtlasContentModelerSettingsSettings>;
   /**
    * If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
    */
@@ -14153,7 +14190,6 @@ export interface Mutation {
 export interface Query {
   __typename?: 'Query';
   allSettings?: Maybe<Settings>;
-  atlasContentModelerSettingsSettings?: Maybe<AtlasContentModelerSettingsSettings>;
   categories: (args?: {
     after?: Maybe<Scalars['String']>;
     before?: Maybe<Scalars['String']>;
@@ -14165,7 +14201,10 @@ export interface Query {
     id: Scalars['ID'];
     idType?: Maybe<CategoryIdType>;
   }) => Maybe<Category>;
-  comment: (args: { id: Scalars['ID'] }) => Maybe<Comment>;
+  comment: (args: {
+    id: Scalars['ID'];
+    idType?: Maybe<CommentNodeIdTypeEnum>;
+  }) => Maybe<Comment>;
   comments: (args?: {
     after?: Maybe<Scalars['String']>;
     before?: Maybe<Scalars['String']>;
@@ -14265,6 +14304,7 @@ export interface Query {
     before?: Maybe<Scalars['String']>;
     first?: Maybe<Scalars['Int']>;
     last?: Maybe<Scalars['Int']>;
+    where?: Maybe<RootQueryToPluginConnectionWhereArgs>;
   }) => Maybe<RootQueryToPluginConnection>;
   post: (args: {
     asPreview?: Maybe<Scalars['Boolean']>;
@@ -14379,7 +14419,6 @@ export interface Subscription {
 }
 
 export interface SchemaObjectTypes {
-  AtlasContentModelerSettingsSettings: AtlasContentModelerSettingsSettings;
   Avatar: Avatar;
   Category: Category;
   CategoryToAncestorsCategoryConnection: CategoryToAncestorsCategoryConnection;
@@ -14463,6 +14502,8 @@ export interface SchemaObjectTypes {
   PageToPreviewConnectionEdge: PageToPreviewConnectionEdge;
   PageToRevisionConnection: PageToRevisionConnection;
   PageToRevisionConnectionEdge: PageToRevisionConnectionEdge;
+  Page_Gallery: Page_Gallery;
+  Page_Home: Page_Home;
   Plugin: Plugin;
   Post: Post;
   PostFormat: PostFormat;
@@ -14582,7 +14623,6 @@ export interface SchemaObjectTypes {
   WritingSettings: WritingSettings;
 }
 export type SchemaObjectTypesNames =
-  | 'AtlasContentModelerSettingsSettings'
   | 'Avatar'
   | 'Category'
   | 'CategoryToAncestorsCategoryConnection'
@@ -14666,6 +14706,8 @@ export type SchemaObjectTypesNames =
   | 'PageToPreviewConnectionEdge'
   | 'PageToRevisionConnection'
   | 'PageToRevisionConnectionEdge'
+  | 'Page_Gallery'
+  | 'Page_Home'
   | 'Plugin'
   | 'Post'
   | 'PostFormat'
@@ -14783,6 +14825,11 @@ export type SchemaObjectTypesNames =
   | 'UserToUserRoleConnectionEdge'
   | 'WPPageInfo'
   | 'WritingSettings';
+
+export interface $AcfFieldGroup {
+  Page_Gallery?: Page_Gallery;
+  Page_Home?: Page_Home;
+}
 
 export interface $Commenter {
   CommentAuthor?: CommentAuthor;
@@ -14951,6 +14998,7 @@ export type MakeNullable<T> = {
 export interface ScalarsEnums extends MakeNullable<Scalars> {
   AvatarRatingEnum: AvatarRatingEnum | undefined;
   CategoryIdType: CategoryIdType | undefined;
+  CommentNodeIdTypeEnum: CommentNodeIdTypeEnum | undefined;
   CommentsConnectionOrderbyEnum: CommentsConnectionOrderbyEnum | undefined;
   ContentNodeIdTypeEnum: ContentNodeIdTypeEnum | undefined;
   ContentTypeEnum: ContentTypeEnum | undefined;
@@ -14967,6 +15015,7 @@ export interface ScalarsEnums extends MakeNullable<Scalars> {
   MimeTypeEnum: MimeTypeEnum | undefined;
   OrderEnum: OrderEnum | undefined;
   PageIdType: PageIdType | undefined;
+  PluginStatusEnum: PluginStatusEnum | undefined;
   PostFormatIdType: PostFormatIdType | undefined;
   PostIdType: PostIdType | undefined;
   PostObjectFieldFormatEnum: PostObjectFieldFormatEnum | undefined;

@@ -8,11 +8,15 @@ import {
   Main,
   SEO,
 } from 'components';
+import Gallery from 'components/Gallery';
 import { pageTitle } from 'utils';
 
 export function PageComponent({ page }) {
   const { useQuery } = client;
   const generalSettings = useQuery().generalSettings;
+  const galleryImages = page?.gallery?.galleryImages.map((galleryImage) => {
+    return galleryImage.mediaItemUrl
+  });
 
   return (
     <>
@@ -30,6 +34,7 @@ export function PageComponent({ page }) {
       <Main>
         <EntryHeader title={page?.title()} image={page?.featuredImage?.node} />
         <div className="container">
+          {galleryImages != null && <Gallery images={galleryImages}/>}
           <ContentWrapper content={page?.content()} />
         </div>
       </Main>

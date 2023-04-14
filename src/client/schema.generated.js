@@ -10,6 +10,7 @@ export const scalarsEnumsHash = {
   AvatarRatingEnum: true,
   Boolean: true,
   CategoryIdType: true,
+  CommentNodeIdTypeEnum: true,
   CommentsConnectionOrderbyEnum: true,
   ContentNodeIdTypeEnum: true,
   ContentTypeEnum: true,
@@ -29,6 +30,7 @@ export const scalarsEnumsHash = {
   MimeTypeEnum: true,
   OrderEnum: true,
   PageIdType: true,
+  PluginStatusEnum: true,
   PostFormatIdType: true,
   PostIdType: true,
   PostObjectFieldFormatEnum: true,
@@ -49,9 +51,10 @@ export const scalarsEnumsHash = {
 };
 
 export const generatedSchema = {
-  AtlasContentModelerSettingsSettings: {
+  AcfFieldGroup: {
     __typename: { __type: 'String!' },
-    atlasContentModelerUsageTracking: { __type: 'String' },
+    fieldGroupName: { __type: 'String' },
+    $on: { __type: '$AcfFieldGroup!' },
   },
   Avatar: {
     __typename: { __type: 'String!' },
@@ -175,6 +178,7 @@ export const generatedSchema = {
     search: { __type: 'String' },
     slug: { __type: '[String]' },
     termTaxonomId: { __type: '[ID]' },
+    termTaxonomyId: { __type: '[ID]' },
     updateTermMetaCache: { __type: 'Boolean' },
   },
   CategoryToContentNodeConnection: {
@@ -1037,7 +1041,13 @@ export const generatedSchema = {
     file: { __type: 'String' },
     height: { __type: 'Int' },
     meta: { __type: 'MediaItemMeta' },
-    sizes: { __type: '[MediaSize]' },
+    sizes: {
+      __type: '[MediaSize]',
+      __args: {
+        exclude: '[MediaItemSizeEnum]',
+        include: '[MediaItemSizeEnum]',
+      },
+    },
     width: { __type: 'Int' },
   },
   MediaItem: {
@@ -1259,6 +1269,7 @@ export const generatedSchema = {
     path: { __type: 'String' },
     target: { __type: 'String' },
     title: { __type: 'String' },
+    uri: { __type: 'String' },
     url: { __type: 'String' },
   },
   MenuItemLinkable: {
@@ -1324,6 +1335,7 @@ export const generatedSchema = {
     author: { __type: 'NodeWithAuthorToUserConnectionEdge' },
     authorDatabaseId: { __type: 'Int' },
     authorId: { __type: 'ID' },
+    id: { __type: 'ID!' },
     $on: { __type: '$NodeWithAuthor!' },
   },
   NodeWithAuthorToUserConnectionEdge: {
@@ -1334,6 +1346,7 @@ export const generatedSchema = {
     __typename: { __type: 'String!' },
     commentCount: { __type: 'Int' },
     commentStatus: { __type: 'String' },
+    id: { __type: 'ID!' },
     $on: { __type: '$NodeWithComments!' },
   },
   NodeWithContentEditor: {
@@ -1342,6 +1355,7 @@ export const generatedSchema = {
       __type: 'String',
       __args: { format: 'PostObjectFieldFormatEnum' },
     },
+    id: { __type: 'ID!' },
     $on: { __type: '$NodeWithContentEditor!' },
   },
   NodeWithExcerpt: {
@@ -1350,47 +1364,15 @@ export const generatedSchema = {
       __type: 'String',
       __args: { format: 'PostObjectFieldFormatEnum' },
     },
+    id: { __type: 'ID!' },
     $on: { __type: '$NodeWithExcerpt!' },
   },
   NodeWithFeaturedImage: {
     __typename: { __type: 'String!' },
-    conditionalTags: { __type: 'ConditionalTags' },
-    contentType: { __type: 'ContentNodeToContentTypeConnectionEdge' },
-    contentTypeName: { __type: 'String!' },
-    databaseId: { __type: 'Int!' },
-    date: { __type: 'String' },
-    dateGmt: { __type: 'String' },
-    desiredSlug: { __type: 'String' },
-    editingLockedBy: { __type: 'ContentNodeToEditLockConnectionEdge' },
-    enclosure: { __type: 'String' },
-    enqueuedScripts: {
-      __type: 'ContentNodeToEnqueuedScriptConnection',
-      __args: { after: 'String', before: 'String', first: 'Int', last: 'Int' },
-    },
-    enqueuedStylesheets: {
-      __type: 'ContentNodeToEnqueuedStylesheetConnection',
-      __args: { after: 'String', before: 'String', first: 'Int', last: 'Int' },
-    },
     featuredImage: { __type: 'NodeWithFeaturedImageToMediaItemConnectionEdge' },
     featuredImageDatabaseId: { __type: 'Int' },
     featuredImageId: { __type: 'ID' },
-    guid: { __type: 'String' },
     id: { __type: 'ID!' },
-    isContentNode: { __type: 'Boolean!' },
-    isPreview: { __type: 'Boolean' },
-    isRestricted: { __type: 'Boolean' },
-    isTermNode: { __type: 'Boolean!' },
-    lastEditedBy: { __type: 'ContentNodeToEditLastConnectionEdge' },
-    link: { __type: 'String' },
-    modified: { __type: 'String' },
-    modifiedGmt: { __type: 'String' },
-    previewRevisionDatabaseId: { __type: 'Int' },
-    previewRevisionId: { __type: 'ID' },
-    slug: { __type: 'String' },
-    status: { __type: 'String' },
-    template: { __type: 'ContentTemplate' },
-    templates: { __type: '[String]' },
-    uri: { __type: 'String' },
     $on: { __type: '$NodeWithFeaturedImage!' },
   },
   NodeWithFeaturedImageToMediaItemConnectionEdge: {
@@ -1399,11 +1381,13 @@ export const generatedSchema = {
   },
   NodeWithPageAttributes: {
     __typename: { __type: 'String!' },
+    id: { __type: 'ID!' },
     menuOrder: { __type: 'Int' },
     $on: { __type: '$NodeWithPageAttributes!' },
   },
   NodeWithRevisions: {
     __typename: { __type: 'String!' },
+    id: { __type: 'ID!' },
     isRevision: { __type: 'Boolean' },
     revisionOf: { __type: 'NodeWithRevisionsToContentNodeConnectionEdge' },
     $on: { __type: '$NodeWithRevisions!' },
@@ -1414,11 +1398,13 @@ export const generatedSchema = {
   },
   NodeWithTemplate: {
     __typename: { __type: 'String!' },
+    id: { __type: 'ID!' },
     template: { __type: 'ContentTemplate' },
     $on: { __type: '$NodeWithTemplate!' },
   },
   NodeWithTitle: {
     __typename: { __type: 'String!' },
+    id: { __type: 'ID!' },
     title: {
       __type: 'String',
       __args: { format: 'PostObjectFieldFormatEnum' },
@@ -1427,6 +1413,7 @@ export const generatedSchema = {
   },
   NodeWithTrackbacks: {
     __typename: { __type: 'String!' },
+    id: { __type: 'ID!' },
     pingStatus: { __type: 'String' },
     pinged: { __type: '[String]' },
     toPing: { __type: '[String]' },
@@ -1495,7 +1482,9 @@ export const generatedSchema = {
     featuredImage: { __type: 'NodeWithFeaturedImageToMediaItemConnectionEdge' },
     featuredImageDatabaseId: { __type: 'Int' },
     featuredImageId: { __type: 'ID' },
+    gallery: { __type: 'Page_Gallery' },
     guid: { __type: 'String' },
+    home: { __type: 'Page_Home' },
     id: { __type: 'ID!' },
     isContentNode: { __type: 'Boolean!' },
     isFrontPage: { __type: 'Boolean!' },
@@ -1619,6 +1608,16 @@ export const generatedSchema = {
     stati: { __type: '[PostStatusEnum]' },
     status: { __type: 'PostStatusEnum' },
     title: { __type: 'String' },
+  },
+  Page_Gallery: {
+    __typename: { __type: 'String!' },
+    fieldGroupName: { __type: 'String' },
+    galleryImages: { __type: '[MediaItem]' },
+  },
+  Page_Home: {
+    __typename: { __type: 'String!' },
+    fieldGroupName: { __type: 'String' },
+    homeBannerImage: { __type: 'MediaItem' },
   },
   Plugin: {
     __typename: { __type: 'String!' },
@@ -1950,6 +1949,7 @@ export const generatedSchema = {
     search: { __type: 'String' },
     slug: { __type: '[String]' },
     termTaxonomId: { __type: '[ID]' },
+    termTaxonomyId: { __type: '[ID]' },
     updateTermMetaCache: { __type: 'Boolean' },
   },
   PostToCommentConnection: {
@@ -2025,6 +2025,7 @@ export const generatedSchema = {
     search: { __type: 'String' },
     slug: { __type: '[String]' },
     termTaxonomId: { __type: '[ID]' },
+    termTaxonomyId: { __type: '[ID]' },
     updateTermMetaCache: { __type: 'Boolean' },
   },
   PostToPreviewConnectionEdge: {
@@ -2106,6 +2107,7 @@ export const generatedSchema = {
     search: { __type: 'String' },
     slug: { __type: '[String]' },
     termTaxonomId: { __type: '[ID]' },
+    termTaxonomyId: { __type: '[ID]' },
     updateTermMetaCache: { __type: 'Boolean' },
   },
   PostToTermNodeConnection: {
@@ -2140,6 +2142,7 @@ export const generatedSchema = {
     slug: { __type: '[String]' },
     taxonomies: { __type: '[TaxonomyEnum]' },
     termTaxonomId: { __type: '[ID]' },
+    termTaxonomyId: { __type: '[ID]' },
     updateTermMetaCache: { __type: 'Boolean' },
   },
   PostTypeLabelDetails: {
@@ -2172,7 +2175,10 @@ export const generatedSchema = {
   },
   ReadingSettings: {
     __typename: { __type: 'String!' },
+    pageForPosts: { __type: 'Int' },
+    pageOnFront: { __type: 'Int' },
     postsPerPage: { __type: 'Int' },
+    showOnFront: { __type: 'String' },
   },
   RegisterUserInput: {
     aim: { __type: 'String' },
@@ -2250,6 +2256,7 @@ export const generatedSchema = {
     search: { __type: 'String' },
     slug: { __type: '[String]' },
     termTaxonomId: { __type: '[ID]' },
+    termTaxonomyId: { __type: '[ID]' },
     updateTermMetaCache: { __type: 'Boolean' },
   },
   RootQueryToCommentConnection: {
@@ -2501,6 +2508,11 @@ export const generatedSchema = {
     cursor: { __type: 'String' },
     node: { __type: 'Plugin' },
   },
+  RootQueryToPluginConnectionWhereArgs: {
+    search: { __type: 'String' },
+    stati: { __type: '[PluginStatusEnum]' },
+    status: { __type: 'PluginStatusEnum' },
+  },
   RootQueryToPostConnection: {
     __typename: { __type: 'String!' },
     edges: { __type: '[RootQueryToPostConnectionEdge]' },
@@ -2576,6 +2588,7 @@ export const generatedSchema = {
     search: { __type: 'String' },
     slug: { __type: '[String]' },
     termTaxonomId: { __type: '[ID]' },
+    termTaxonomyId: { __type: '[ID]' },
     updateTermMetaCache: { __type: 'Boolean' },
   },
   RootQueryToTagConnection: {
@@ -2609,6 +2622,7 @@ export const generatedSchema = {
     search: { __type: 'String' },
     slug: { __type: '[String]' },
     termTaxonomId: { __type: '[ID]' },
+    termTaxonomyId: { __type: '[ID]' },
     updateTermMetaCache: { __type: 'Boolean' },
   },
   RootQueryToTaxonomyConnection: {
@@ -2654,6 +2668,7 @@ export const generatedSchema = {
     slug: { __type: '[String]' },
     taxonomies: { __type: '[TaxonomyEnum]' },
     termTaxonomId: { __type: '[ID]' },
+    termTaxonomyId: { __type: '[ID]' },
     updateTermMetaCache: { __type: 'Boolean' },
   },
   RootQueryToThemeConnection: {
@@ -2717,9 +2732,6 @@ export const generatedSchema = {
   },
   Settings: {
     __typename: { __type: 'String!' },
-    atlasContentModelerSettingsSettingsAtlasContentModelerUsageTracking: {
-      __type: 'String',
-    },
     discussionSettingsDefaultCommentStatus: { __type: 'String' },
     discussionSettingsDefaultPingStatus: { __type: 'String' },
     generalSettingsDateFormat: { __type: 'String' },
@@ -2731,7 +2743,10 @@ export const generatedSchema = {
     generalSettingsTimezone: { __type: 'String' },
     generalSettingsTitle: { __type: 'String' },
     generalSettingsUrl: { __type: 'String' },
+    readingSettingsPageForPosts: { __type: 'Int' },
+    readingSettingsPageOnFront: { __type: 'Int' },
     readingSettingsPostsPerPage: { __type: 'Int' },
+    readingSettingsShowOnFront: { __type: 'String' },
     writingSettingsDefaultCategory: { __type: 'Int' },
     writingSettingsDefaultPostFormat: { __type: 'String' },
     writingSettingsUseSmilies: { __type: 'Boolean' },
@@ -3105,9 +3120,6 @@ export const generatedSchema = {
     post: { __type: 'Post' },
   },
   UpdateSettingsInput: {
-    atlasContentModelerSettingsSettingsAtlasContentModelerUsageTracking: {
-      __type: 'String',
-    },
     clientMutationId: { __type: 'String' },
     discussionSettingsDefaultCommentStatus: { __type: 'String' },
     discussionSettingsDefaultPingStatus: { __type: 'String' },
@@ -3120,7 +3132,10 @@ export const generatedSchema = {
     generalSettingsTimezone: { __type: 'String' },
     generalSettingsTitle: { __type: 'String' },
     generalSettingsUrl: { __type: 'String' },
+    readingSettingsPageForPosts: { __type: 'Int' },
+    readingSettingsPageOnFront: { __type: 'Int' },
     readingSettingsPostsPerPage: { __type: 'Int' },
+    readingSettingsShowOnFront: { __type: 'String' },
     writingSettingsDefaultCategory: { __type: 'Int' },
     writingSettingsDefaultPostFormat: { __type: 'String' },
     writingSettingsUseSmilies: { __type: 'Boolean' },
@@ -3128,9 +3143,6 @@ export const generatedSchema = {
   UpdateSettingsPayload: {
     __typename: { __type: 'String!' },
     allSettings: { __type: 'Settings' },
-    atlasContentModelerSettingsSettings: {
-      __type: 'AtlasContentModelerSettingsSettings',
-    },
     clientMutationId: { __type: 'String' },
     discussionSettings: { __type: 'DiscussionSettings' },
     generalSettings: { __type: 'GeneralSettings' },
@@ -3642,9 +3654,6 @@ export const generatedSchema = {
   query: {
     __typename: { __type: 'String!' },
     allSettings: { __type: 'Settings' },
-    atlasContentModelerSettingsSettings: {
-      __type: 'AtlasContentModelerSettingsSettings',
-    },
     categories: {
       __type: 'RootQueryToCategoryConnection',
       __args: {
@@ -3659,7 +3668,10 @@ export const generatedSchema = {
       __type: 'Category',
       __args: { id: 'ID!', idType: 'CategoryIdType' },
     },
-    comment: { __type: 'Comment', __args: { id: 'ID!' } },
+    comment: {
+      __type: 'Comment',
+      __args: { id: 'ID!', idType: 'CommentNodeIdTypeEnum' },
+    },
     comments: {
       __type: 'RootQueryToCommentConnection',
       __args: {
@@ -3771,7 +3783,13 @@ export const generatedSchema = {
     plugin: { __type: 'Plugin', __args: { id: 'ID!' } },
     plugins: {
       __type: 'RootQueryToPluginConnection',
-      __args: { after: 'String', before: 'String', first: 'Int', last: 'Int' },
+      __args: {
+        after: 'String',
+        before: 'String',
+        first: 'Int',
+        last: 'Int',
+        where: 'RootQueryToPluginConnectionWhereArgs',
+      },
     },
     post: {
       __type: 'Post',
@@ -3956,6 +3974,7 @@ export const generatedSchema = {
     NodeWithFeaturedImage: ['Page', 'Post'],
     NodeWithPageAttributes: ['Page'],
     NodeWithRevisions: ['Page', 'Post'],
+    AcfFieldGroup: ['Page_Gallery', 'Page_Home'],
     NodeWithExcerpt: ['Post'],
     NodeWithTrackbacks: ['Post'],
   },
